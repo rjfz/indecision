@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  RAILS_ENV: "development"
+  RAILS_LOG_TO_STDOUT: "present"
+  POSTGRES_HOST: {{ index .Values.indecision.postgresHost | quote }}
+  POSTGRES_DATABASE: {{ index .Values.indecision.postgresDatabase | quote }}
+  POSTGRES_USERNAME: {{ index .Values.indecision.postgresUsername | quote }}
+  POSTGRES_PASSWORD: {{ index .Values.indecision.postgresPassword | quote }}

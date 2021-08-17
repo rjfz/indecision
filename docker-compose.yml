@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: indecision
+      POSTGRES_PASSWORD: indecision
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/var/lib/redis/data
+  web:
+    build: .
+    command: sh -c 'yarn install && bundle install && bundle exec rails s -p 3000 -b "0.0.0.0"'
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+      - /app/tmp
+      - /app/node_modules
+      - /app/data
+    environment:
+      RAILS_ENV: development
+      RAILS_LOG_TO_STDOUT: present
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: indecision_development
+      POSTGRES_USERNAME: indecision
+      POSTGRES_PASSWORD: indecision
+      INDECISION_SMTP_ADDRESS: dev.rudi.lan.local
+      INDECISION_SMTP_PORT: 2500
+      INDECISION_SMTP_USERNAME: ""
+      INDECISION_SMTP_PASSWORD: ""
+      INDECISION_SMTP_AUTHENTICATION: ""
+      INDECISION_SMTP_STARTTLS: ""
+    restart: always

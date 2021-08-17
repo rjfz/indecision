@@ -1,0 +1,7 @@
+/data
+/node_modules
+/log
+*_history
+/spring-1000
+/storage
+/.cache

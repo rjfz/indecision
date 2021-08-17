@@ -1,0 +1,19 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ include "indecision.fullname" .}}-route
+  namespace: {{ index .Values.indecision.namespace | quote }}
+  labels:
+    app: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/component: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/instance: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/part-of: {{ include "indecision.fullname" .}}
+spec:
+  host: {{ index .Values.indecision.domain | quote }}
+  wildcardPolicy: None
+  to:
+    kind: Service
+    name: {{ include "indecision.fullname" .}}-svc
+    weight: 100
+  port:
+    targetPort: http

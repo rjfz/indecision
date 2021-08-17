@@ -1,0 +1,43 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: {{ include "indecision.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "indecision.name" . }}
+    helm.sh/chart: {{ include "indecision.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - "indecision"
+        from:
+          kind: ImageStreamTag
+          namespace: {{ .Values.indecision.namespace }}
+          name: {{ .Values.indecision.image }}:{{ .Values.indecision.tag }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "indecision.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: tmp
+          emptyDir: {}
+      containers:
+        - name: "indecision"
+          image: {{ .Values.indecision.repository }}/{{ .Values.indecision.namespace }}/{{ .Values.indecision.image }}:{{ .Values.indecision.tag }}
+          volumeMounts:
+            - name: tmp
+              mountPath: /app/tmp
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-configmap
