@@ -28,7 +28,7 @@ USER app
 
 COPY --chown=app:app package.json yarn.lock /app/
 
-RUN yarn install
+RUN NODE_ENV=production yarn install
 
 COPY --chown=app:app Gemfile* /app/
 
@@ -36,7 +36,7 @@ RUN bundle install
 
 COPY --chown=app:app --chmod=775 . /app/
 
-# RUN bundle exec rails assets:precompile
+RUN bundle exec rails assets:precompile
 
 RUN chmod 770 /app/tmp
 
