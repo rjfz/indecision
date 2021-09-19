@@ -51,6 +51,9 @@ development:
   <<: *default
   compile: true
 
+  check_yarn_integrity: false
+
+
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false

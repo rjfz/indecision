@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
-  RAILS_ENV: "development"
+  RAILS_ENV: "production"
   RAILS_LOG_TO_STDOUT: "present"
   POSTGRES_HOST: {{ index .Values.indecision.postgresHost | quote }}
   POSTGRES_DATABASE: {{ index .Values.indecision.postgresDatabase | quote }}
