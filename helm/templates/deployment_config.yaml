@@ -43,6 +43,7 @@ spec:
                 name: {{ .Release.Name }}-configmap
           readinessProbe:
             httpGet:
+              scheme: HTTPS
               path: /
               port: 3000
             initialDelaySeconds: 15
