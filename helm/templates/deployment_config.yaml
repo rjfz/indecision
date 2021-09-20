@@ -42,9 +42,7 @@ spec:
             - configMapRef:
                 name: {{ .Release.Name }}-configmap
           readinessProbe:
-            httpGet:
-              scheme: HTTPS
-              path: /
+            tcpSocket:
               port: 3000
             initialDelaySeconds: 15
             timeoutSeconds: 1
