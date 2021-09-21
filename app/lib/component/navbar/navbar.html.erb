@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <nav class="bg-gray-800">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
@@ -46,7 +45,6 @@
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <% if current_user %>
-          <%= link_to 'signout', destroy_user_session_path, method: :delete, class: 'text-white' %>
         <% else %>
           <%= link_to 'signin', new_user_session_path, class: 'text-white' %>
         <% end %>
@@ -58,12 +56,14 @@
           </svg>
         </button>
         <!-- Profile dropdown -->
-        <div class="ml-3 relative">
+        <div class="ml-3 relative" x-data="{ open: false }" @click.away="open = false" >
           <div>
-            <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+            <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true"  @click="open = !open">
               <span class="sr-only">Open user menu</span>
               <% if current_user&.avatar&.attached? %>
                 <%= image_tag current_user.avatar, class: 'w-8 h-8 rounded-full' %>
+                <% else %>
+               <div class="text-white"> <%= current_user&.email%></div>
               <% end %>
             </button>
           </div>
@@ -77,11 +77,11 @@
               From: "transform opacity-100 scale-100"
               To: "transform opacity-0 scale-95"
           -->
-          <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+          <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" >
             <!-- Active: "bg-gray-100", Not Active: "" -->
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+            <%= link_to 'Signout', destroy_user_session_path, method: :delete, class: 'block px-4 py-2 text-sm text-gray-700' %>
+            <%= link_to 'Edit Account', edit_user_registration_path, class: 'block px-4 py-2 text-sm text-gray-700' %>
+            
           </div>
         </div>
       </div>
