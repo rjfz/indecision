@@ -3,7 +3,6 @@ class DashboardController < ApplicationController
 
     def Dashboard
     end
-    def Classes
-    end
+  
   end
   
