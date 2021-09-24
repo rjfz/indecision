@@ -37,8 +37,9 @@
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <%= link_to 'Homepage', homepage_path ,  class: 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium', 'aria-current' => "page" %>
             <%= link_to 'About', '#' , class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= link_to 'IDK lol', '#', class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"%>
-            <%= link_to 'joe mama', '#', class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+            <% if current_user %>
+            <%= link_to 'dashboard', dashboard_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"%>
+          <% end %>
           </div>
         </div>
       </div>

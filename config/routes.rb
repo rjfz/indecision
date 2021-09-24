@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   root to: 'home#homepage', as: :homepage
   get '/dashboard', to: 'dashboard#dashboard', as: :dashboard
+  get 'dashboard/classes', to: 'classes#classes', as: :classes
 end
