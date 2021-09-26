@@ -17,3 +17,28 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "indecision.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "indecision.fullname" . }}-svc-minio
+  labels:
+    app.kubernetes.io/name: {{ include "indecision.name" . }}
+    helm.sh/chart: {{ include "indecision.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9000
+      targetPort: 9000
+      protocol: TCP
+      name: http
+    - port: 9001
+      targetPort: 9001
+      protocol: TCP
+      name: console
+  selector:
+    app.kubernetes.io/name: {{ include "indecision.name" . }}-minio
+    app.kubernetes.io/instance: {{ .Release.Name }}
+---
