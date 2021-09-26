@@ -17,3 +17,44 @@ spec:
     weight: 100
   port:
     targetPort: http
+
+--- 
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ include "indecision.fullname" .}}-route-minio
+  namespace: {{ index .Values.indecision.namespace | quote }}
+  labels:
+    app: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/component: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/instance: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/part-of: {{ include "indecision.fullname" .}}
+spec:
+  host: {{ index .Values.indecision.s3_hostname | quote }}
+  wildcardPolicy: None
+  to:
+    kind: Service
+    name: {{ include "indecision.fullname" .}}-svc-minio
+    weight: 100
+  port:
+    targetPort: http
+--- 
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ include "indecision.fullname" .}}-route-minio-console
+  namespace: {{ index .Values.indecision.namespace | quote }}
+  labels:
+    app: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/component: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/instance: {{ include "indecision.fullname" .}}
+    app.kubernetes.io/part-of: {{ include "indecision.fullname" .}}
+spec:
+  host: {{ index .Values.indecision.console_hostname | quote }}
+  wildcardPolicy: None
+  to:
+    kind: Service
+    name: {{ include "indecision.fullname" .}}-svc-minio
+    weight: 100
+  port:
+    targetPort: console

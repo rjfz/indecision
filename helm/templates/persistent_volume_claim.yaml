@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "indecision.fullname" . }}-volume-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ index .Values "indecision" "storage" }}
+  volumeName: {{ include "indecision.fullname" . }}-volume
+  volumeMode: Filesystem
