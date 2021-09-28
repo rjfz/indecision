@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#dashboard', as: :dashboard
   get '/classes', to: 'classes#classes', as: :classes
   get '/about', to: 'about#about', as: :about
+  get '/subject', to: 'subject#subject', as: :subject
 end
