@@ -57,19 +57,24 @@
             </div>
           </div>
           <div class="mt-6 relative">
-            <div class="absolute inset-0 flex items-center" aria-hidden="true">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
             <div class="relative flex justify-center text-sm">
               <span class="px-2 bg-white text-gray-500">
                 Or continue with
               </span>
             </div>
+            <div class="inset-0 flex items-center">
+              <div class="w-full">
+                <% if alert %>
+                  <div class="m-auto w-2/3">
+                    <%= render Component::Devise::ErrorMessage.new text: alert %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
         <div class="mt-6">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "space-y-6" ) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "space-y-6", data: { turbo: false} ) do |f| %>
             <div>
               <%= f.label :email_address, class: "block text-sm font-medium text-gray-700" %>
               <div class="mt-1">

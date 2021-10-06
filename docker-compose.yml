@@ -39,6 +39,7 @@ services:
     volumes:
       - .:/app
       - /app/tmp
+      - /tmp
       - /app/node_modules
       - /app/data
     environment:
@@ -56,7 +57,7 @@ services:
       INDECISION_SMTP_AUTHENTICATION: ""
       INDECISION_SMTP_STARTTLS: ""
       S3_ACCESS_KEY: accesskey
-      S3_SECRET_KEY: accesskey
+      S3_SECRET_KEY: secretkey
       S3_REGION: "region"
       S3_IMAGES_BUCKET: "images"
       S3_ENDPOINT: "http://minio:9000"

@@ -11,8 +11,7 @@
   </head>
   <body>
     <%= render Component::Navbar::Navbar.new(title: 'indecision', current_user: current_user) %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
+    <%= render Component::Notification::Holder.new %>
   </body>
 </html>

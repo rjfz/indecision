@@ -59,6 +59,7 @@ gem 'devise'
 gem 'dry-rails', github: 'dry-rb/dry-rails'
 
 gem 'tailwindcss-rails', '~> 0.3.3'
+gem 'heroicon'
 
 gem 'audited', '~> 5.0.1'
 gem 'aws-sdk-s3'

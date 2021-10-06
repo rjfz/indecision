@@ -1,0 +1,3 @@
+<%= turbo_stream.append 'notifications' do %>
+  <%= render Component::Notification::Notification.new, text: resource.errors.full_messages.join(', '), style: :error %>
+<% end %>
