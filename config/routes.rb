@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -10,4 +12,7 @@ Rails.application.routes.draw do
   get '/classes', to: 'classes#classes', as: :classes
   get '/about', to: 'about#about', as: :about
   get '/subject', to: 'subject#subject', as: :subject
+
+
+  resources :lessons
 end

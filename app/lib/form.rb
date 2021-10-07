@@ -1,5 +1,6 @@
-class Form
+# frozen_string_literal: true
 
+class Form
   include ActiveModel::Model
   include ActiveModel::Attributes
 
@@ -9,10 +10,6 @@ class Form
 
   def valid!
     raise ValidationError, errors.full_messages.join(', ') unless valid?
-  end
-
-  def initialize(**attributes)
-    super
   end
 
   def attributes

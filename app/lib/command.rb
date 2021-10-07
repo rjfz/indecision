@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class Command
-
-  class << self  #?
-
+  # ?
+  class << self
     def save(record)
       record.tap(&:save!)
     end
@@ -13,8 +14,5 @@ class Command
     def restore(record)
       record.tap(&:undiscard!)
     end
-
-
   end
-
 end

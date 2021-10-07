@@ -1,7 +1,7 @@
-class ClassesController < ApplicationController
-    before_action :require_signed_in
+# frozen_string_literal: true
 
-    def Classes
-    end
-  end
-  
+class ClassesController < ApplicationController
+  before_action :require_signed_in
+
+  def classes; end
+end

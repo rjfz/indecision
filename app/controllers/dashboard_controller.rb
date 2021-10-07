@@ -1,8 +1,7 @@
-class DashboardController < ApplicationController
-    before_action :require_signed_in
+# frozen_string_literal: true
 
-    def Dashboard
-    end
-  
-  end
-  
+class DashboardController < ApplicationController
+  before_action :require_signed_in
+
+  def dashboard; end
+end

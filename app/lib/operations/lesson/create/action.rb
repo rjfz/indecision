@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module Operations
   module Lesson
     module Create
       class Action
-
         def initialize(form)
           @form = form
         end
@@ -10,7 +11,6 @@ module Operations
         def call
           Command.save(lesson)
         end
-
 
         private
 
@@ -23,4 +23,3 @@ module Operations
     end
   end
 end
-

@@ -1,7 +1,7 @@
-class SubjectController < ApplicationController
-    before_action :require_signed_in
+# frozen_string_literal: true
 
-    def Subject
-    end
-  end
-  
+class SubjectController < ApplicationController
+  before_action :require_signed_in
+
+  def subject; end
+end

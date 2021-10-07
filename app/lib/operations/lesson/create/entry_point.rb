@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module Operations
   module Lesson
     module Create
       class EntryPoint
-
         include ::EntryPoint
 
         def initialize(**params)
@@ -13,4 +14,3 @@ module Operations
     end
   end
 end
-

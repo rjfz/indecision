@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EntryPoint
   extend ActiveSupport::Concern
 
@@ -16,5 +18,5 @@ module EntryPoint
     def call(*args)
       new(*args).call
     end
-end
+  end
 end

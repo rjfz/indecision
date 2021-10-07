@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLessons < ActiveRecord::Migration[6.1]
   def change
     create_table :lessons, id: :uuid, default: 'gen_random_uuid()' do |t|

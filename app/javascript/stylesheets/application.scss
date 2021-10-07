@@ -1,3 +1,31 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select {
+  @apply rounded-lg;
+  @apply w-full;
+  @apply border-gray-400;
+  @apply border;
+  @apply border-solid;
+  @apply disabled:bg-gray-200;
+  @apply disabled:text-gray-800;
+}
+
+[type="checkbox"] {
+  @apply rounded-md;
+}

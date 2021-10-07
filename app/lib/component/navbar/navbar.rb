@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Component
   module Navbar
     class Navbar < ViewComponent::Base
