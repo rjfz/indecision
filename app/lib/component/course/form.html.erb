@@ -1,17 +1,17 @@
-<%= turbo_frame_tag dom_id(lesson) do %>
-  <%= form_for lesson do |f| %>
+<%= turbo_frame_tag dom_id(course) do %>
+  <%= form_for course do |f| %>
     <div class="grid grid-cols-12 gap-4 py-4">
       <div class="col-span-4">
-        <%= f.label :course %>
-        <%= f.collection_select :course_id, courses, :id, :summary, {}, { class: 'min-w-full' } %>
+        <%= f.label :subject %>
+        <%= f.collection_select :subject_id, Subject.all, :id, :name, {}, { class: 'min-w-full' } %>
       </div>
       <div class="col-span-4">
         <%= f.label :name %>
         <%= f.text_field :name, class: 'w-full' %>
       </div>
       <div class="col-span-4">
-        <%= f.label :lesson_number %>
-        <%= f.text_field :number, class: 'w-full' %>
+        <%= f.label :module_code %>
+        <%= f.text_field :module_code, class: 'w-full' %>
       </div>
     <%= f.submit class: 'btn btn-success' %>
   <% end %>

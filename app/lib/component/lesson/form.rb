@@ -14,6 +14,9 @@ module Component
         @lesson = lesson
       end
 
+      def courses
+        Presenter.from ::Course.all
+      end
     end
   end
 end
