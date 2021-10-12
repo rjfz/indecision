@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   root to: 'home#homepage', as: :homepage
   get '/dashboard', to: 'dashboard#dashboard', as: :dashboard
   get '/about', to: 'about#about', as: :about
-  get '/subject', to: 'subject#subject', as: :subject
 
 
   resources :lessons
   resources :courses
+  resources :subjects
 end

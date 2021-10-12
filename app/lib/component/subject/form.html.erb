@@ -1,0 +1,11 @@
+<%= turbo_frame_tag dom_id(subject) do %>
+  <%= form_for subject do |f| %>
+    <div class="grid grid-cols-12 gap-4 py-4">
+    <div class="col-span-4">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'w-full' %>
+      </div>
+      </div>
+    <%= f.submit class: 'btn btn-success' %>
+  <% end %>
+<% end %>
