@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :lessons
   resources :courses
   resources :subjects
+  resources :lobbies
 end

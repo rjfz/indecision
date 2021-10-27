@@ -3,7 +3,9 @@
 class LessonsController < AuthenticatedController
   include LessonDependencies['create_lesson']
 
-  def index; end
+  def index
+    @lessons = Presenter.from Lesson.all
+  end
 
   def new
     @lesson = Lesson.new
