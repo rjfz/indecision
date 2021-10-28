@@ -1,0 +1,16 @@
+<%= form_for question do |f| %>
+  <div class="grid grid-cols-12 gap-4 py-4">
+    <div class="col-span-4">
+      <%= f.label :lesson %>
+      <%= f.collection_select :lesson_id, lessons, :id, :name, {}, { class: 'min-w-full' } %>
+    </div>
+    <div class="col-span-4">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'w-full' %>
+    </div>
+      <div class="col-span-4">
+      <%= f.label :date%>
+      <%= f.text_field :session_date, class: 'w-full' %>
+    </div>
+  <%= f.submit class: 'btn btn-success' %>
+<% end %>
