@@ -11,6 +11,7 @@ class LobbiesController < AuthenticatedController
 
   def create
     @lobby = create_lobby.call(lobby_params)
+    redirect_to @lobby
   end
 
   private
