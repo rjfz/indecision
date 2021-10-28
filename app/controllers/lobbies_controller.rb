@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class LobbiesController < AuthenticatedController
-  include LobbyDependencies['create_lobby']
+  include LobbyDependencies['create_lobby', 'update_lobby']
 
-  def index; end
+  before_action :lobby, only: %i[show]
+
+  def index
+    @lobbies = Lobby.all
+  end
 
   def new
     @lobby = Lobby.new(lesson_id: params[:lesson_id])
@@ -14,14 +18,24 @@ class LobbiesController < AuthenticatedController
     redirect_to @lobby
   end
 
+  def update
+    @lobby = update_lobby.call(lobby: lobby, **lobby_params)
+  end
+
+
   private
+
+  def lobby
+    @lobby ||= Lobby.find(params[:id])
+  end
 
   def lobby_params
     symbolize params.require(:lobby).permit(
       :lesson_id,
       :room_code,
       :session_date,
-      :name
+      :name,
+      :state
     )
   end
 end

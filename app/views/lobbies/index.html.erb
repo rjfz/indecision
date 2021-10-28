@@ -1,1 +1,6 @@
-
+<% @lobbies.each do |lobby| %>
+  <p>UUID: <%= lobby.id %></p><br>
+  <p>Name: <%= lobby.name %></p><br>
+  <%= link_to 'Show', lobby %>
+  <hr>
+<% end %>

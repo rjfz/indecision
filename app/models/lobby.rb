@@ -2,5 +2,16 @@
 
 class Lobby < ApplicationRecord
   belongs_to :lesson
-end
 
+  def pending?
+    state == pending
+  end
+
+  def started?
+    state == started
+  end
+
+  def finished?
+    state == finished
+  end
+end

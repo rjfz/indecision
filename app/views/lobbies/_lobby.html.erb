@@ -1,0 +1,16 @@
+<%= form_tag lobby_path(@lobby), method: :patch, class: 'ml-2' do %>
+<%= hidden_field_tag 'lobby[id]', @lobby.id %>
+<%= hidden_field_tag 'lobby[state]', 'pending' %>
+<%= submit_tag 'Pending', class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+<% end %>
+<%= form_tag lobby_path(@lobby), method: :patch, class: 'ml-2' do %>
+<%= hidden_field_tag 'lobby[id]', @lobby.id %>
+<%= hidden_field_tag 'lobby[state]', 'started' %>
+<%= submit_tag 'Start Quiz', class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+<% end %>
+<%= form_tag lobby_path(@lobby), method: :patch, class: 'ml-2' do %>
+<%= hidden_field_tag 'lobby[id]', @lobby.id %>
+<%= hidden_field_tag 'lobby[state]', 'finished' %>
+<%= submit_tag 'Finish Quiz', class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+<% end %>
+<%= @lobby.state %>
