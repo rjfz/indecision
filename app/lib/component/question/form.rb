@@ -15,7 +15,7 @@ module Component
       end
 
       def lessons
-        Presenter.from ::Question.all
+        Presenter.from ::Lesson.all
       end
     end
   end

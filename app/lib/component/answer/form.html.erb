@@ -1,16 +1,16 @@
 <%= form_for answer do |f| %>
   <div class="grid grid-cols-12 gap-4 py-4">
     <div class="col-span-4">
-      <%= f.label :lesson %>
-      <%= f.collection_select :lesson_id, lessons, :id, :name, {}, { class: 'min-w-full' } %>
+      <%= f.label :question %>
+      <%= f.collection_select :question_id, questions, :id, :title, {}, { class: 'min-w-full' } %>
     </div>
     <div class="col-span-4">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'w-full' %>
+      <%= f.label :answer %>
+      <%= text_field_tag 'answer[answers][][value]', '', class: 'w-full' %>
     </div>
       <div class="col-span-4">
-      <%= f.label :date%>
-      <%= f.text_field :session_date, class: 'w-full' %>
+      <%= check_box_tag 'answer[answers][][correct]', 'false' %>
+      <%= f.label :correct %>
     </div>
   <%= f.submit class: 'btn btn-success' %>
 <% end %>

@@ -2,11 +2,11 @@
 
 module Forms
   class Answer < Form
-    attribute :answer_id, :uuid
+    attribute :question_id, :uuid
     attribute :value, :string
     attribute :correct, :boolean
 
-    validates :answer_id, :value, presence: true
+    validates :question_id, :value, presence: true
     validates :value, length: { minimum: 1, maximum: 220 }
   end
 end

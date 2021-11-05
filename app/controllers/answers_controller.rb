@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class AnswersController < AuthenticatedController
-  include LessonDependencies['create_lesson']
+  include AnswerDependencies['create_answer']
 
   def index
-    @answers = Presenter.from Answer.all
+    @answers = Presenter.from Answer.all if Answer.any?
   end
 
   def new
@@ -12,15 +12,19 @@ class AnswersController < AuthenticatedController
   end
 
   def create
-    @answer = create_answer.call(answer_params)
+    answer_params[:answers].each do |answer|
+      create_answer.call(**symbolize(answer.merge(**base_params)))
+    end
   end
 
   private
 
   def answer_params
-    symbolize params.require(:answer).permit(
-      :title,
-      :time_limit
-    )
+    symbolize params.require(:answer).permit(answers: %i[value correct])
   end
+
+  def base_params
+    symbolize params.require(:answer).permit(:question_id)
+  end
+
 end

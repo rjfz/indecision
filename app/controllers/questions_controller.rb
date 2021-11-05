@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class QuestionsController < AuthenticatedController
-  include LessonDependencies['create_lesson']
+  include QuestionDependencies['create_question']
 
   def index
-    @questions = Presenter.from Question.all
+    @questions = Presenter.from Question.all if Question.any?
   end
 
   def new
@@ -20,7 +20,8 @@ class QuestionsController < AuthenticatedController
   def question_params
     symbolize params.require(:question).permit(
       :title,
-      :time_limit
+      :time_limit,
+      :lesson_id
     )
   end
 end

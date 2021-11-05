@@ -14,8 +14,8 @@ module Component
         @answer = answer
       end
 
-      def lessons
-        Presenter.from ::Answer.all
+      def questions
+        Presenter.from ::Question.all
       end
     end
   end
