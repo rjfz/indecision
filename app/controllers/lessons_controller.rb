@@ -4,7 +4,7 @@ class LessonsController < AuthenticatedController
   include LessonDependencies['create_lesson']
 
   def index
-    @lessons = Presenter.from Lesson.all
+    @lessons = Presenter.from(Lesson.all) if Lesson.any?
   end
 
   def new
