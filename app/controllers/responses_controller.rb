@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class ResponsesController < AuthenticatedController
-  include ResponsesDependencies['create_response']
+  include ResponseDependencies['create_response']
 
   def new
-    @response = Response.new
+    @response = Response.new(question_id: params[:question_id], lobby_id: params[:lobby_id])
   end
 
   def create

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 202110281807225) do
+ActiveRecord::Schema.define(version: 202111071707225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,17 @@ ActiveRecord::Schema.define(version: 202110281807225) do
     t.index ["lesson_id"], name: "index_questions_on_lesson_id"
   end
 
+  create_table "responses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "question_id", null: false
+    t.uuid "lobby_id", null: false
+    t.uuid "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_responses_on_answer_id"
+    t.index ["lobby_id"], name: "index_responses_on_lobby_id"
+    t.index ["question_id"], name: "index_responses_on_question_id"
+  end
+
   create_table "subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -120,4 +131,7 @@ ActiveRecord::Schema.define(version: 202110281807225) do
   add_foreign_key "lessons", "courses"
   add_foreign_key "lobbies", "lessons"
   add_foreign_key "questions", "lessons"
+  add_foreign_key "responses", "answers"
+  add_foreign_key "responses", "lobbies"
+  add_foreign_key "responses", "questions"
 end
