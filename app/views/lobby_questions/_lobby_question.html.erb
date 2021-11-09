@@ -1,0 +1,8 @@
+<%= turbo_frame_tag dom_id(lobby_question) do %>
+  <%= lobby_question.question.title %>
+  <%= lobby_question.state %>
+  <%= form_tag lobby_question_path(lobby_question), method: :patch, class: 'ml-2' do %>
+    <%= hidden_field_tag 'lobby_question[state]', 'starting'%>
+    <%= submit_tag 'Start Question', class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  <% end %>
+<% end %>

@@ -1,3 +1,10 @@
-<%= turbo_frame_tag dom_id(@lobby) do %>
-<%= render @lobby %>
+<% if current_user %>
+  <%= turbo_frame_tag dom_id(@lobby) do %>
+    <%= render @lobby %>
+  <% end %>
+<% else %>
+  <%= turbo_stream_from @lobby.id %>
+  <%= turbo_frame_tag dom_id(Response.new) do %>
+    Waiting...
+  <% end %>
 <% end %>

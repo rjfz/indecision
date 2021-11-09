@@ -18,9 +18,6 @@ module Operations
 
         attr_reader :form, :lobby
 
-        def lobby
-          @lobby ||= ::Lobby.new(attributes: form.attributes)
-        end
       end
     end
   end

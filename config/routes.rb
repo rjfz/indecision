@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   resources :lobbies
   resources :questions
   resources :answers
-  resources :responses, except: [:index]
+  resources :responses
   resources :lobby_questions, only: [:update]
 end
