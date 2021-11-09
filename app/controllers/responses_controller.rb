@@ -16,10 +16,12 @@ class ResponsesController < AuthenticatedController
   private
 
    def response_params
-    symbolize params.require(:lobby).permit(
-      :lesson_id,
-      :question_id,
-      :answer_id
+    symbolize params.require(:response).permit(
+      :lobby_question,
+      :answer,
+      :user
     )
    end
 end
+
+
