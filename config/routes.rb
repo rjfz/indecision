@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :lobbies
   resources :questions
   resources :answers
-  resources :responses, only: [:new]
+  resources :responses, except: [:index]
 end

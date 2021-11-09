@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 202111071707225) do
+ActiveRecord::Schema.define(version: 2021_11_07_182416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 202111071707225) do
     t.index ["lesson_id"], name: "index_lobbies_on_lesson_id"
   end
 
+  create_table "lobby_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "lobby_id", null: false
+    t.uuid "question_id", null: false
+    t.string "state"
+    t.datetime "started_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lobby_id"], name: "index_lobby_questions_on_lobby_id"
+    t.index ["question_id"], name: "index_lobby_questions_on_question_id"
+  end
+
   create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "lesson_id", null: false
     t.string "title"
@@ -91,14 +102,14 @@ ActiveRecord::Schema.define(version: 202111071707225) do
   end
 
   create_table "responses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "question_id", null: false
-    t.uuid "lobby_id", null: false
+    t.uuid "lobby_question_id", null: false
     t.uuid "answer_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["answer_id"], name: "index_responses_on_answer_id"
-    t.index ["lobby_id"], name: "index_responses_on_lobby_id"
-    t.index ["question_id"], name: "index_responses_on_question_id"
+    t.index ["lobby_question_id"], name: "index_responses_on_lobby_question_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
   end
 
   create_table "subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -107,7 +118,7 @@ ActiveRecord::Schema.define(version: 202111071707225) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -130,8 +141,10 @@ ActiveRecord::Schema.define(version: 202111071707225) do
   add_foreign_key "courses", "subjects"
   add_foreign_key "lessons", "courses"
   add_foreign_key "lobbies", "lessons"
+  add_foreign_key "lobby_questions", "lobbies"
+  add_foreign_key "lobby_questions", "questions"
   add_foreign_key "questions", "lessons"
   add_foreign_key "responses", "answers"
-  add_foreign_key "responses", "lobbies"
-  add_foreign_key "responses", "questions"
+  add_foreign_key "responses", "lobby_questions"
+  add_foreign_key "responses", "users"
 end
