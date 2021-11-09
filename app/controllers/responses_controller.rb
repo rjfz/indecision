@@ -4,7 +4,7 @@ class ResponsesController < AuthenticatedController
   include ResponseDependencies['create_response']
 
   def new
-    @response = Response.new(question_id: params[:question_id], lobby_id: params[:lobby_id])
+    @response = Response.new(lobby_question_id: params[:lobby_question_id])
   end
 
   def create
