@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :questions
   resources :answers
   resources :responses, except: [:index]
+  resources :lobby_questions, only: [:update]
 end

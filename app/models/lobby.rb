@@ -2,6 +2,7 @@
 
 class Lobby < ApplicationRecord
   belongs_to :lesson
+  has_many :lobby_questions
 
   def pending?
     state == pending

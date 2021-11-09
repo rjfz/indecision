@@ -3,4 +3,6 @@
 class Lesson < ApplicationRecord
   belongs_to :course
   has_many :lobbies, dependent: :destroy
+  has_many :questions
+
 end

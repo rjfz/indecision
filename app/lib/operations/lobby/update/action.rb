@@ -4,7 +4,7 @@ module Operations
   module Lobby
     module Update
       class Action
-        def initialize(lobby,form)
+        def initialize(lobby, form)
           @form = form
           @lobby = lobby
         end
