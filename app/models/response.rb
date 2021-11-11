@@ -2,4 +2,5 @@
 
 class Response < ApplicationRecord
   belongs_to :lobby_question
+  belongs_to :answer
 end

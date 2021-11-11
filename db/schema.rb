@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_07_182416) do
+ActiveRecord::Schema.define(version: 2021_11_10_093416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_182416) do
   create_table "responses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "lobby_question_id", null: false
     t.uuid "answer_id", null: false
-    t.uuid "user_id", null: false
+    t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["answer_id"], name: "index_responses_on_answer_id"

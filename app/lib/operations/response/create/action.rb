@@ -16,8 +16,8 @@ module Operations
 
         attr_reader :form
 
-        def answer
-          @Response ||= ::Response.new(attributes: form.attributes)
+        def response
+          @response ||= ::Response.new(attributes: form.attributes)
         end
       end
     end

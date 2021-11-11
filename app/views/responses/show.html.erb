@@ -1,0 +1,6 @@
+<%= turbo_frame_tag dom_id(Response.new) do %>
+  <%= turbo_stream_from @response.lobby_question_id %>
+  <%= turbo_frame_tag dom_id(@response) do %>
+    Waiting for all responses to be collected...
+  <% end %>
+<% end %>
