@@ -5,18 +5,12 @@ RSpec.describe Operations::Subject::Create::EntryPoint do
 
   let(:params) do
     {
-      name: name,
+      name: "yeetus"
     }
   end
 
   context 'when all parameters are supplied' do
-    it 'does not raise an error' do
-      expect { subject }.not_to raise_error
-    end
-
-    it 'adds a new subject to the database' do
-      expect { subject }.to change(Subject, :count).by(1)
-    end
+    it_behaves_like 'create entrypoint', Subject
   end
 
   context 'when there are missing parameters' do

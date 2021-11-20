@@ -66,3 +66,6 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
 end
+
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
+ActiveJob::Base.queue_adapter = :test

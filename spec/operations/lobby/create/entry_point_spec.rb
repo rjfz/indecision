@@ -1,21 +1,26 @@
 require 'rails_helper'
 
-RSpec.describe Operations::Course::Create::EntryPoint do
+RSpec.describe Operations::Lobby::Create::EntryPoint do
   subject { described_class.call(params) }
 
   let(:params) do
     {
-      subject_id: program.id,
+      lesson_id: lesson.id,
       name: name,
-      module_code: module_code
+      room_code: room_code,
+      session_date: session_date,
+      state: state
     }
   end
-  let(:program) { create(:subject) }
+
+  let(:lesson) { create(:lesson) }
   let(:name) { 'Game Design' }
-  let(:module_code) { 'CS0121' }
+  let(:room_code) { 'sjsj' }
+  let(:session_date) { '12/2/2021' }
+  let(:state) {'started'}
 
   context 'when all parameters are supplied' do
-    it_behaves_like 'create entrypoint', Course
+    it_behaves_like 'create entrypoint', Lobby
   end
 
   context 'when there are missing parameters' do

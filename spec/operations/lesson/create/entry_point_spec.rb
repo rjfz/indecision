@@ -17,13 +17,7 @@ RSpec.describe Operations::Lesson::Create::EntryPoint do
   let(:number) { 1 }
 
   context 'when all parameters are supplied' do
-    it 'does not raise an error' do
-      expect { subject }.not_to raise_error
-    end
-
-    it 'adds a new lesson to the database' do
-      expect { subject }.to change(Lesson, :count).by(1)
-    end
+    it_behaves_like 'create entrypoint', Lesson
   end
 
   context 'when there are missing parameters' do
