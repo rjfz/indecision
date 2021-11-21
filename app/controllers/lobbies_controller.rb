@@ -22,6 +22,16 @@ class LobbiesController < AuthenticatedController
     @lobby = update_lobby.call(lobby: lobby, **lobby_params)
   end
 
+  def room_code
+    room_code = params[:search]
+    lobby = Lobby.find_by(room_code: room_code)
+
+    return redirect_to lobby if lobby
+
+    flash[:error] = 'Room code not found'
+    redirect_to homepage_path
+  end
+
 
   private
 

@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   resources :lessons
   resources :courses
   resources :subjects
-  resources :lobbies
+  resources :lobbies do
+    collection do
+      post :room_code
+    end
+  end
   resources :questions
   resources :answers
   resources :responses
