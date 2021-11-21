@@ -7,7 +7,6 @@ RSpec.describe Operations::Lobby::Create::EntryPoint do
     {
       lesson_id: lesson.id,
       name: name,
-      room_code: room_code,
       session_date: session_date,
       state: state
     }
@@ -15,12 +14,21 @@ RSpec.describe Operations::Lobby::Create::EntryPoint do
 
   let(:lesson) { create(:lesson) }
   let(:name) { 'Game Design' }
-  let(:room_code) { 'sjsj' }
   let(:session_date) { '12/2/2021' }
   let(:state) {'started'}
 
   context 'when all parameters are supplied' do
     it_behaves_like 'create entrypoint', Lobby
+  end
+
+  describe 'room code' do
+    it 'generates a new one' do
+      expect(subject.room_code).not_to be nil
+    end
+
+    it 'doesnt provide illegal values' do
+      expect(subject.room_code).to match(/^[0-9A-Z]{6}$/)
+    end
   end
 
   context 'when there are missing parameters' do

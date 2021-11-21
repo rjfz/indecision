@@ -1,7 +1,6 @@
 module Forms
   class Lobby < Form
     attribute :lesson_id, :uuid
-    attribute :room_code, :string
     attribute :session_date, :datetime
     attribute :name, :string
     attribute :state, :string, default: 'pending'
