@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(Response.new) do %>
+  You've ran out of time!
+
+  <%= render 'show_answer', response: @response %>
+<% end %>

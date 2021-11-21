@@ -1,3 +1,5 @@
-Hey sexies xx your answer was: <%= response.answer.value %>
-<br>
-This is the correct answer:<%= response.lobby_question.question.answers.where(correct: true).first.value %>
+<%= turbo_frame_tag dom_id(Response.new) do %>
+  Hey sexies xx your answer was: <%= response.answer.value %>
+  <br>
+  This is the correct answer:<%= response.lobby_question.question.answers.where(correct: true).first.value %>
+<% end %>

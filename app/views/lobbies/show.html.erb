@@ -1,6 +1,8 @@
 <% if current_user %>
   <%= turbo_frame_tag dom_id(@lobby) do %>
-   room code: <%= @lobby.room_code %>
+    <div class="w-full text-center pt-8">
+      <h2 class="text-4xl">Room code: <strong><%= @lobby.room_code %></strong></h2>
+    </div>
     <%= render @lobby %>
   <% end %>
 <% else %>
