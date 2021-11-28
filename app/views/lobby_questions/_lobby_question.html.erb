@@ -10,7 +10,9 @@
       <div class="text-right">
         <%= form_tag lobby_question_path(lobby_question), method: :patch, class: 'ml-2' do %>
           <%= hidden_field_tag 'lobby_question[state]', 'starting'%>
-          <%= submit_tag 'Start Question', class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+            <% if lobby_question.state != 'finished' %>
+              <%= submit_tag 'Start Question', class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+            <% end %>
         <% end %>
       </div>
     </div>
