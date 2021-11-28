@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class UniquenessValidator < ActiveModel::EachValidator
-
   def validate_each(record, attribute, value)
     model = model_for record
 
@@ -37,5 +36,4 @@ class UniquenessValidator < ActiveModel::EachValidator
   def model_for(record)
     record.class.name.demodulize.constantize
   end
-
 end

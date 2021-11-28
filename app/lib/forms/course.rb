@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Forms
   class Course < Form
     attribute :subject_id, :uuid

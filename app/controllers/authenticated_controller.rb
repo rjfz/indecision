@@ -1,5 +1,6 @@
-class AuthenticatedController < ApplicationController
+# frozen_string_literal: true
 
+class AuthenticatedController < ApplicationController
   def signed_in?
     current_user != nil
   end

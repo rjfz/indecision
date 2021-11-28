@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 module Presenters
   class Question < Presenter
-
-
     def attributes
       {
         title: record.title,
@@ -9,6 +9,5 @@ module Presenters
         time_limit: record.time_limit
       }
     end
-
   end
 end

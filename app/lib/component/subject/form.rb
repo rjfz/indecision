@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Component
   module Subject
     class Form < ViewComponent::Base
-
       include Turbo::FramesHelper
 
       attr_reader :subject
@@ -11,7 +12,6 @@ module Component
 
         @subject = subject
       end
-
     end
   end
 end

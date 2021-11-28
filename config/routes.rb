@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#dashboard', as: :dashboard
   get '/about', to: 'about#about', as: :about
 
-
   resources :lessons
   resources :courses
   resources :subjects

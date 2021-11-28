@@ -3,7 +3,6 @@
 module Component
   module Lesson
     class Form < ViewComponent::Base
-
       include Turbo::FramesHelper
 
       attr_reader :lesson

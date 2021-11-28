@@ -26,5 +26,4 @@ class AnswersController < AuthenticatedController
   def base_params
     symbolize params.require(:answer).permit(:question_id)
   end
-
 end

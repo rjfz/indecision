@@ -3,7 +3,6 @@
 module Component
   module Answer
     class Form < ViewComponent::Base
-
       include Turbo::FramesHelper
 
       attr_reader :answer

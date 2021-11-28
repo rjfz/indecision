@@ -3,7 +3,6 @@
 module Component
   module Lobby
     class Form < ViewComponent::Base
-
       include Turbo::FramesHelper
 
       attr_reader :lobby

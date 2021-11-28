@@ -17,7 +17,6 @@ module Operations
         private
 
         attr_reader :form, :lobby
-
       end
     end
   end

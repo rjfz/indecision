@@ -32,7 +32,6 @@ class LobbiesController < AuthenticatedController
     redirect_to homepage_path
   end
 
-
   private
 
   def lobby

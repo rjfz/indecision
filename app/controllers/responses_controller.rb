@@ -5,12 +5,9 @@ class ResponsesController < AuthenticatedController
 
   before_action :set_response, only: %i[show]
 
-
   def new
     @response = Response.new(lobby_question_id: params[:lobby_question_id])
   end
-
-
 
   def create
     @response = create_response.call(response_params)
@@ -25,21 +22,17 @@ class ResponsesController < AuthenticatedController
     render 'times_up'
   end
 
-
-
   private
 
   def set_response
-    @response ||= Response.find(params[:id])
+    @response ||= Response.find(params[:id]) # rubocop:disable Naming/MemoizedInstanceVariableName
   end
 
-   def response_params
+  def response_params
     symbolize params.require(:response).permit(
       :lobby_question_id,
       :answer_id,
       :user_id
     )
-   end
+  end
 end
-
-

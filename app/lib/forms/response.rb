@@ -9,5 +9,3 @@ module Forms
     validates :answer_id, :lobby_question_id, presence: true
   end
 end
-
-

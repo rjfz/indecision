@@ -8,6 +8,6 @@ module Forms
     attribute :started_at, :datetime, default: Time.now
 
     validates :lobby_id, :question_id, :state, :started_at, presence: true
-    validates :state, inclusion: { in: %w(pending starting started finished) }
+    validates :state, inclusion: { in: %w[pending starting started finished] }
   end
 end

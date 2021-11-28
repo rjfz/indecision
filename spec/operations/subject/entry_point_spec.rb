@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Operations::Subject::Create::EntryPoint do
@@ -5,7 +7,7 @@ RSpec.describe Operations::Subject::Create::EntryPoint do
 
   let(:params) do
     {
-      name: "yeetus"
+      name: 'yeetus'
     }
   end
 

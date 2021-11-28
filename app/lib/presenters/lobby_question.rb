@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 module Presenters
   class LobbyQuestion < Presenter
-
-
     def attributes
       {
         lobby: Presenters::Lobby.new(record.lobby),
@@ -11,6 +11,5 @@ module Presenters
         datetime: record.started_at
       }
     end
-
   end
 end

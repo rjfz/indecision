@@ -1,8 +1,7 @@
+# frozen_string_literal: true
+
 module Presenters
   class Course < Presenter
-
-
-
     def attributes
       {
         name: record.name,

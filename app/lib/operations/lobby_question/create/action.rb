@@ -19,7 +19,6 @@ module Operations
         def lobby_question
           @lobby_question ||= ::LobbyQuestion.new(attributes: form.attributes)
         end
-
       end
     end
   end

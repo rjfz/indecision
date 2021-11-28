@@ -1,5 +1,6 @@
-class Presenter
+# frozen_string_literal: true
 
+class Presenter
   def self.from(records)
     presenter_klass = "Presenters::#{records.first.class.name}".constantize
 
@@ -20,6 +21,7 @@ class Presenter
 
   def method_missing(name, *args, &block)
     return attributes[name] if attributes[name]
+
     super
   end
 
@@ -30,7 +32,4 @@ class Presenter
   private
 
   attr_reader :record
-
-
-
 end

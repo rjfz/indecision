@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Operations::LobbyQuestion::Create::EntryPoint do
@@ -15,7 +17,7 @@ RSpec.describe Operations::LobbyQuestion::Create::EntryPoint do
   let(:lobby) { create(:lobby) }
   let(:question) { create(:question) }
   let(:started_at) { '12/2/2021' }
-  let(:state) {'started'}
+  let(:state) { 'started' }
 
   context 'when all parameters are supplied' do
     it_behaves_like 'create entrypoint', LobbyQuestion

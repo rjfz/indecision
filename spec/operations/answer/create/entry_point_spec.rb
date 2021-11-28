@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Operations::Answer::Create::EntryPoint do
@@ -7,7 +9,7 @@ RSpec.describe Operations::Answer::Create::EntryPoint do
     {
       question_id: question.id,
       value: value,
-      correct: correct,
+      correct: correct
     }
   end
 
