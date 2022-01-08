@@ -1,18 +1,24 @@
-<%= turbo_frame_tag dom_id(lobby) do %>
-  <div class="w-full text-center text-xl pt-4 pb-8">
-    <p>Lobby is currently: <%= @lobby.state.humanize %></p>
-  </div>
-  <div class="max-w-7xl mx-auto grid grid-cols-4 px-8 py-2 font-semibold">
-    <p class="col-span-2">Question</p>
-    <p>State</p>
-    <p></p>
-  </div>
-  <%= turbo_stream_from "lobby_#{lobby.id}_questions" %>
-  <%= turbo_frame_tag "lobby_#{lobby.id}_questions" do %>
-    <% lobby.lobby_questions.each do |lobby_question|%>
-      <%= turbo_frame_tag dom_id(lobby_question) do %>
-        <%= render lobby_question %>
+  <%= turbo_frame_tag dom_id(lobby) do %>
+    <div class="w-full text-center pt-8">
+      <h2 class="text-4xl">Room code: <strong><%= lobby.room_code %></strong></h2>
+    </div>
+    <%= turbo_stream_from dom_id(lobby) %>
+    <%= turbo_frame_tag dom_id(lobby) do %>
+      <div class="w-full text-center text-xl pt-4 pb-8">
+        <p>Lobby is currently: <%= lobby.state.humanize %></p>
+      </div>
+      <div class="max-w-7xl mx-auto grid grid-cols-4 px-8 py-2 font-semibold">
+        <p class="col-span-2">Question</p>
+        <p>State</p>
+        <p></p>
+      </div>
+      <%= turbo_stream_from "lobby_#{lobby.id}_questions" %>
+      <%= turbo_frame_tag "lobby_#{lobby.id}_questions" do %>
+        <% lobby.lobby_questions.each do |lobby_question|%>
+          <%= turbo_frame_tag dom_id(lobby_question) do %>
+            <%= render lobby_question %>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>

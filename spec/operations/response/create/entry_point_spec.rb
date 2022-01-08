@@ -2,18 +2,24 @@
 
 require 'rails_helper'
 
-RSpec.describe Operations::Subject::Create::EntryPoint do
+RSpec.describe Operations::Response::Create::EntryPoint do
   subject { described_class.call(params) }
 
   let(:params) do
     {
-      name: 'yeetus'
+      lobby_question_id: lobby_question.id,
+      answer_id: answer.id,
+      user_id: user.id
+
 
     }
   end
+  let(:lobby_question) { create(:lobby_question) }
+  let(:answer) { create(:answer) }
+  let(:user) { create(:user) }
 
   context 'when all parameters are supplied' do
-    it_behaves_like 'create entrypoint', Subject
+    it_behaves_like 'create entrypoint', Response
   end
 
   context 'when there are missing parameters' do
