@@ -3,6 +3,8 @@
 class CoursesController < AuthenticatedController
   include CourseDependencies['create_course']
 
+  before_action :course, only: %i[show]
+
   def index; end
 
   def new
@@ -14,6 +16,10 @@ class CoursesController < AuthenticatedController
   end
 
   private
+
+  def course
+    @course ||= Course.find(params[:id])
+  end
 
   def course_params
     symbolize params.require(:course).permit(
