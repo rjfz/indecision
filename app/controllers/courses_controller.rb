@@ -13,6 +13,7 @@ class CoursesController < AuthenticatedController
 
   def create
     @course = create_course.call(course_params)
+    redirect_to courses_path
   end
 
   private

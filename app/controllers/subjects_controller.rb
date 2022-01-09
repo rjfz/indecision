@@ -11,6 +11,7 @@ class SubjectsController < ApplicationController
 
   def create
     @subject = create_subject.call(subject_params)
+    redirect_to courses_path
   end
 
   private
