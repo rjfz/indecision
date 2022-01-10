@@ -61,6 +61,7 @@ gem 'dry-rails', github: 'dry-rb/dry-rails'
 gem 'heroicon'
 gem 'tailwindcss-rails', '~> 0.3.3'
 
+gem 'config'
 gem 'audited', '~> 5.0.1'
 gem 'aws-sdk-s3'
 gem 'discard'
