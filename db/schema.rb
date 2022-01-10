@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_130416) do
+ActiveRecord::Schema.define(version: 2022_01_10_152616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2022_01_10_130416) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "anon_user_lobbies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "lobby_id", null: false
+    t.uuid "anon_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["anon_user_id"], name: "index_anon_user_lobbies_on_anon_user_id"
+    t.index ["lobby_id"], name: "index_anon_user_lobbies_on_lobby_id"
   end
 
   create_table "anon_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -113,6 +122,8 @@ ActiveRecord::Schema.define(version: 2022_01_10_130416) do
     t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "anon_user_id", null: false
+    t.index ["anon_user_id"], name: "index_responses_on_anon_user_id"
     t.index ["answer_id"], name: "index_responses_on_answer_id"
     t.index ["lobby_question_id"], name: "index_responses_on_lobby_question_id"
     t.index ["user_id"], name: "index_responses_on_user_id"
@@ -143,6 +154,8 @@ ActiveRecord::Schema.define(version: 2022_01_10_130416) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "anon_user_lobbies", "anon_users"
+  add_foreign_key "anon_user_lobbies", "lobbies"
   add_foreign_key "answers", "questions"
   add_foreign_key "courses", "subjects"
   add_foreign_key "lessons", "courses"
@@ -150,6 +163,7 @@ ActiveRecord::Schema.define(version: 2022_01_10_130416) do
   add_foreign_key "lobby_questions", "lobbies"
   add_foreign_key "lobby_questions", "questions"
   add_foreign_key "questions", "lessons"
+  add_foreign_key "responses", "anon_users"
   add_foreign_key "responses", "answers"
   add_foreign_key "responses", "lobby_questions"
   add_foreign_key "responses", "users"

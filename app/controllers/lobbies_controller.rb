@@ -2,6 +2,7 @@
 
 class LobbiesController < AuthenticatedController
   include LobbyDependencies['create_lobby', 'update_lobby']
+  include AnonUserLobbyDependencies['create_anon_user_lobby']
 
   before_action :lobby, only: %i[show]
 
@@ -26,6 +27,7 @@ class LobbiesController < AuthenticatedController
     room_code = params[:search]
     lobby = Lobby.find_by(room_code: room_code)
 
+    create_anon_user_lobby.call(lobby_id: lobby.id, anon_user_id: anon_user.id)
     return redirect_to lobby if lobby
 
     flash[:error] = 'Room code not found'
