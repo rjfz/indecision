@@ -14,6 +14,7 @@ class AnswersController < AuthenticatedController
   def create
     answer_params[:answers].each do |answer|
       create_answer.call(**symbolize(answer.merge(**base_params)))
+      redirect_to new_answer_path
     end
   end
 

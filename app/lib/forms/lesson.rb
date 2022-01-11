@@ -5,6 +5,7 @@ module Forms
     attribute :course_id, :uuid
     attribute :name, :string
     attribute :number, :integer
+    attribute :image, :upload
 
     validates :course_id, :name, :number, presence: true
     validates :name, length: { minimum: 6, maximum: 220 }

@@ -5,6 +5,7 @@ class Lobby < ApplicationRecord
   has_many :lobby_questions
   has_many :anon_user_lobbies
   has_many :anon_users, through: :anon_user_lobbies
+
   after_update_commit -> { broadcast_replace_to "lobby_#{id}" }
 
   def pending?

@@ -6,7 +6,8 @@ module Presenters
       {
         title: record.title,
         id: record.id,
-        time_limit: record.time_limit
+        time_limit: record.time_limit,
+        answers: record.answers
       }
     end
   end
