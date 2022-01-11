@@ -23,7 +23,7 @@ module Operations
         end
 
         def already_exists?
-          ::AnonUserLobby.where(**form.attributes).any?
+          ::AnonUserLobby.where(**form.attributes.slice(:anon_user_id, :lobby_id)).any?
         end
       end
     end

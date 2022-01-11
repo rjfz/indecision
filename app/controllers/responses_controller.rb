@@ -10,7 +10,7 @@ class ResponsesController < AuthenticatedController
   end
 
   def create
-    @response = create_response.call(response_params)
+    @response = create_response.call(**response_params, anon_user_id: anon_user.id)
     timer = @response.lobby_question.started_at + @response.lobby_question.question.time_limit.seconds
     return timer_expired if Time.now > timer
 

@@ -5,7 +5,8 @@ module Forms
     attribute :lobby_question_id, :uuid
     attribute :answer_id, :uuid
     attribute :user_id, :uuid
+    attribute :anon_user_id, :uuid
 
-    validates :answer_id, :lobby_question_id, presence: true
+    validates :answer_id, :lobby_question_id, :anon_user_id,  presence: true
   end
 end

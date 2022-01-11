@@ -3,7 +3,7 @@
 class LobbyQuestionsController < AuthenticatedController
   include LobbyQuestionDependencies['update_lobby_question']
 
-  before_action :lobby_question, only: %i[update]
+  before_action :lobby_question, only: %i[update show]
 
   def update
     @lobby_question = update_lobby_question.call(lobby_question: lobby_question, **lobby_question_params)
