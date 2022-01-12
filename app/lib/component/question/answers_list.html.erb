@@ -4,21 +4,7 @@
   <div></div>
 </div>
 <% @question.answers.each do |answer| %>
-  <%= form_for answer do |f| %>
-    <%= f.hidden_field :question_id, value: @question.id %>
-    <div class="rounded-xl max-w-7xl mx-auto border mb-4">
-      <div class="grid grid-cols-4 p-8">
-        <div class="text-left col-span-2">
-          <%= f.text_field :value %>
-        </div>
-        <div>
-          <%= f.check_box :correct %>
-          <%= f.label :correct %>
-        </div>
-        <div>
-          <%= f.submit class: 'btn btn-success' %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <%= render Component::Question::NewAnswer.new answer: answer%>
 <% end %>
+  <%= render Component::Question::NewAnswer.new answer: Answer.new(question: @question)%>
+

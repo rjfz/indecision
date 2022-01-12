@@ -14,10 +14,8 @@ class AnswersController < AuthenticatedController
   end
 
   def create
-    answer_params[:answers].each do |answer|
-      create_answer.call(**symbolize(answer.merge(**base_params)))
-      redirect_to new_answer_path
-    end
+    @answer = create_answer.call(**base_params)
+    redirect_to edit_question_path(@answer.question)
   end
 
   def update
@@ -29,10 +27,6 @@ class AnswersController < AuthenticatedController
 
   def answer
     @answer ||= Answer.find(params[:id])
-  end
-
-  def answer_params
-    symbolize params.require(:answer).permit(answers: %i[value correct])
   end
 
   def base_params
