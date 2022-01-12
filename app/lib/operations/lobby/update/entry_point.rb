@@ -6,9 +6,10 @@ module Operations
       class EntryPoint
         include ::EntryPoint
 
-       def initialize(lobby:, **params)
+        def initialize(lobby:, **params)
           @form = Forms::Lobby.new(**params).with(lobby)
           @action = Action.new(lobby, form)
+        end
       end
     end
   end

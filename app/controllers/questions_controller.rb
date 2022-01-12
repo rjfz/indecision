@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuestionsController < AuthenticatedController
-  include QuestionDependencies['create_question']
+  include QuestionDependencies['create_question', 'update_question']
 
   before_action :question, only: %i[update show edit]
 
@@ -17,6 +17,12 @@ class QuestionsController < AuthenticatedController
     @question = create_question.call(question_params)
     redirect_to new_answer_path
   end
+
+  def update
+    @question = update_question.call(question: question, **question_params)
+    redirect_to edit_lesson_path(@question.lesson)
+  end
+
   private
 
   def question
