@@ -1,0 +1,16 @@
+<%= form_for question do |f| %>
+  <%= f.hidden_field :lesson_id, value: question.lesson_id %>
+  <div class="rounded-xl max-w-7xl mx-auto border mb-4">
+    <div class="grid grid-cols-4 p-8">
+      <div class="text-left col-span-2">
+        <%= f.text_field :title %>
+      </div>
+      <div>
+        <%= f.text_field :time_limit %>
+      </div>
+      <div>
+        <%= f.submit class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+<% end %>

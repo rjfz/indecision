@@ -14,7 +14,7 @@ module Component
       end
 
       def questions
-        Presenter.from lesson.questions
+        lesson.questions
       end
     end
   end

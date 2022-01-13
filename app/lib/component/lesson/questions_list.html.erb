@@ -4,18 +4,9 @@
   <div></div>
 </div>
 <% questions.each do |question| %>
-  <div class="rounded-xl max-w-7xl mx-auto border mb-4">
-    <div class="grid grid-cols-4 p-8">
-      <div class="text-left col-span-2">
-        <%= question.title %>
-      </div>
-      <div>
-        <%= question.answers.count %>
-      </div>
-      <div><%= link_to 'Edit Question', edit_question_path(question.id), class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %></div>
-    </div>
-  </div>
+   <%= render Component::Lesson::NewQuestion.new question: question %>
 <% end %>
+  <%= render Component::Lesson::NewQuestion.new question: Question.new(lesson: @lesson) %>
 
 
 
