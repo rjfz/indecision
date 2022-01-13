@@ -2,7 +2,7 @@
 
 module Component
   module Lesson
-    class NewQuestion < ViewComponent::Base
+    class ExistingQuestion < ViewComponent::Base
       include Turbo::FramesHelper
 
       attr_reader :question
@@ -12,7 +12,6 @@ module Component
 
         @question = question
       end
-
     end
   end
 end

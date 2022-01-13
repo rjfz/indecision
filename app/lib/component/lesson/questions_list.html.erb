@@ -1,13 +1,6 @@
-<div class="max-w-7xl mx-auto grid grid-cols-4 px-8 py-2 font-semibold">
-  <div class="col-span-2">Title</div>
-  <div>Answers</div>
-  <div></div>
-</div>
 <% questions.each do |question| %>
-   <%= render Component::Lesson::NewQuestion.new question: question %>
+   <%= render Component::Lesson::ExistingQuestion.new question: question %>
 <% end %>
-  <%= render Component::Lesson::NewQuestion.new question: Question.new(lesson: @lesson) %>
-
 
 
 
