@@ -1,0 +1,7 @@
+<div class="w-1/2 h-1/2">
+<canvas
+  data-controller="chart"
+  data-chart-type-value='bar'
+  data-chart-data-value='{ "labels": <%= responses.keys.map(&:value) %>, "datasets": [{ "label": "Answer distribution", "backgroundColor": <%= colors %>, "borderColor": "#3B82F6", "data": <%= responses.values.map(&:count) %> }] }'
+></canvas>
+</div>

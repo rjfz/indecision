@@ -28,3 +28,6 @@ import "@hotwired/turbo-rails";
 import "alpine-turbo-drive-adapter";
 import Alpine from "alpinejs";
 import "stylesheets/application";
+
+import Chart from "stimulus-chartjs"
+application.register("chart", Chart)

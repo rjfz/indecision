@@ -4,6 +4,8 @@ class LobbyQuestion < ApplicationRecord
   belongs_to :lobby
   belongs_to :question
 
+  has_many :responses
+
   after_update_commit { broadcast_replace_to "lobby_#{lobby_id}_questions" }
 
   def pending?
