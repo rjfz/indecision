@@ -7,7 +7,7 @@ module Forms
     attribute :state, :string, default: 'pending'
     attribute :started_at, :datetime
 
-    validates :lobby_id, :question_id, :state, :started_at, presence: true
+    validates :lobby_id, :question_id, :state, presence: true
     validates :state, inclusion: { in: %w[pending starting started finished] }
   end
 end

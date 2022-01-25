@@ -24,11 +24,13 @@ class LobbiesController < AuthenticatedController
   end
 
   def room_code
-    room_code = params[:search]
+    room_code = params[:search].upcase
     lobby = Lobby.find_by(room_code: room_code)
 
-    create_anon_user_lobby.call(lobby_id: lobby.id, anon_user_id: anon_user.id)
-    return redirect_to lobby if lobby
+    if lobby
+      create_anon_user_lobby.call(lobby_id: lobby.id, anon_user_id: anon_user.id)
+      return redirect_to lobby
+    end
 
     flash[:error] = 'Room code not found'
     redirect_to homepage_path
