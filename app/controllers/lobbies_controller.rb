@@ -4,7 +4,7 @@ class LobbiesController < AuthenticatedController
   include LobbyDependencies['create_lobby', 'update_lobby']
   include AnonUserLobbyDependencies['create_anon_user_lobby']
 
-  before_action :lobby, only: %i[show]
+  before_action :lobby, only: %i[show stats]
 
   def index
     @lobbies = Lobby.all

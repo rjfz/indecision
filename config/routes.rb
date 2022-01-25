@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :courses
   resources :subjects
   resources :lobbies do
+    member do
+      get :stats
+    end
     collection do
       post :room_code
     end
