@@ -15,7 +15,7 @@ class QuestionsController < AuthenticatedController
 
   def create
     @question = create_question.call(question_params)
-    redirect_to new_answer_path
+    redirect_to edit_lesson_path(@question.lesson)
   end
 
   def update
