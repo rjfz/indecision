@@ -1,0 +1,35 @@
+<%= turbo_frame_tag "#{dom_id(@lobby)}_panel" do %>
+  <div class="w-full text-center pt-8">
+    <h2 class="text-4xl">Room code: <strong><%= @lobby.room_code %></strong></h2>
+  </div>
+  <%= turbo_stream_from dom_id(@lobby) %>
+  <div class="w-full text-center text-xl pt-4 pb-8">
+    <p>Lobby is currently: <%= @lobby.state.humanize %></p>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <div class="max-w-7xl mx-auto grid grid-cols-4 px-8 py-2 font-semibold">
+        <p class="col-span-2">Question</p>
+        <p>State</p>
+        <p></p>
+      </div>
+      <%= turbo_stream_from "lobby_#{@lobby.id}_questions" %>
+      <%= turbo_frame_tag "lobby_#{@lobby.id}_questions" do %>
+        <% @lobby.lobby_questions.each do |lobby_question|%>
+          <%= turbo_frame_tag dom_id(lobby_question) do %>
+            <%= render lobby_question %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="text-right pr-8">
+      <p class="font-semibold">Players:</p>
+      <%= turbo_stream_from "lobby_#{@lobby.id}_anon_users" %>
+      <%= turbo_frame_tag "anon_user_lobbies" do %>
+        <% @lobby.anon_users.each do |anon_user| %>
+          <p class="capitalize"> <%= anon_user.username %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

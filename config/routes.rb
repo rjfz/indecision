@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :lobbies do
     member do
       get :stats
+      get :room_information
+      get :leaderboard
     end
     collection do
       post :room_code
