@@ -190,6 +190,8 @@ GEM
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
     kwalify (0.7.2)
+    leaderboard (3.12.1)
+      redis
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -378,6 +380,7 @@ DEPENDENCIES
   hotwire-rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
+  leaderboard
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pry

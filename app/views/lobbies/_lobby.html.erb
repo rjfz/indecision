@@ -1,12 +1,12 @@
-<%= link_to 'Back to Lessons', @lobby.lesson, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-<%= link_to 'Lobby Stats', stats_lobby_path	, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-<div x-data="{ frame_src: '<%= room_information_lobby_path(@lobby) %>' }">
+<%= link_to 'Back to Lessons', lobby.lesson, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+<%= link_to 'Lobby Stats', stats_lobby_path(lobby)	, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+<div x-data="{ frame_src: '<%= room_information_lobby_path(lobby) %>', active: 'lobby' }">
 <ul class="flex flex-wrap border-b border-gray-200 justify-around">
     <li class="mr-2">
-        <button class="inline-block bg-gray-100 text-blue-600 rounded-t-lg py-4 px-4 text-sm font-medium text-center active" @click="frame_src='<%= room_information_lobby_path(@lobby) %>'">Lobby</button>
+        <button class="inline-block text-gray-500 hover:text-gray-600 hover:bg-gray-50 rounded-t-lg py-4 px-4 text-sm font-medium text-center" :class="{ 'bg-gray-100 text-blue-600' : active=='lobby' }" @click="frame_src='<%= room_information_lobby_path(lobby) %>'; active='lobby'">Lobby</button>
     </li>
     <li class="mr-2">
-        <button class="inline-block text-gray-500 hover:text-gray-600 hover:bg-gray-50 rounded-t-lg py-4 px-4 text-sm font-medium text-center" @click="frame_src='<%= leaderboard_lobby_path(@lobby) %>'">Leaderboard</button>
+        <button class="inline-block text-gray-500 hover:text-gray-600 hover:bg-gray-50 rounded-t-lg py-4 px-4 text-sm font-medium text-center" :class="{ 'bg-gray-100 text-blue-600' : active=='leaderboard' }" @click="frame_src='<%= leaderboard_lobby_path(lobby) %>'; active='leaderboard'">Leaderboard</button>
     </li>
 </ul>
 <%= turbo_frame_tag "#{dom_id(lobby)}_panel", ':src' => "frame_src" %>

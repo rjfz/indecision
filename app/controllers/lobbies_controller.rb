@@ -1,10 +1,12 @@
 # frozen_string_literal: true
+require 'leaderboard'
 
 class LobbiesController < AuthenticatedController
   include LobbyDependencies['create_lobby', 'update_lobby']
   include AnonUserLobbyDependencies['create_anon_user_lobby']
 
   before_action :lobby, only: %i[show stats room_information leaderboard]
+  before_action :highscore, only: %i[leaderboard]
 
   def index
     @lobbies = Lobby.all
@@ -36,6 +38,12 @@ class LobbiesController < AuthenticatedController
     redirect_to homepage_path
   end
 
+  def leaderboard
+    @leaderboard_list = lobby.lobby_questions.map(&:responses).flatten.group_by(&:anon_user).map do |anon_user, responses|
+      [anon_user.username, responses.map(&:points)..sum]
+    end.to_h
+  end
+
   private
 
   def lobby
@@ -50,5 +58,20 @@ class LobbiesController < AuthenticatedController
       :name,
       :state
     )
+  end
+
+  def highscore
+    @highscore ||=  Leaderboard.new(
+      'highscores',
+      Leaderboard::DEFAULT_OPTIONS,
+      {host: 'redis', port: 6379, db: 1}
+    )
+  end
+
+  def add_members_to_highscore
+    # highscore.remove_member('obedient aphid')
+    # lobby.lobby_questions.map(&:responses).flatten.each do |response|
+    #   highscore.rank_member(response.anon_user_id, response.points || 0)
+    # end
   end
 end

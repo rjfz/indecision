@@ -14,6 +14,7 @@ RSpec.describe Operations::Lobby::Update::EntryPoint do
 
   let(:state) { 'started' }
 
+
   describe 'updating state' do
     it 'stores the updated state' do
       subject

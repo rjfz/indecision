@@ -68,3 +68,6 @@ gem 'discard'
 gem 'dotenv-rails'
 gem 'tinymce-rails'
 gem 'view_component', require: 'view_component/engine'
+gem 'leaderboard'
+gem 'faker'
+

@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :lobby_question do
     association :lobby
     association :question
-    started_at { '12/2/21' }
+    started_at { Time.now }
     state { 'pending' }
   end
 end
