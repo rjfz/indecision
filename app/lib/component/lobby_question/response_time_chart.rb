@@ -21,6 +21,7 @@ module Component
           index = (response.created_at - question_start_time).ceil
           @steps[index] += 1
         end
+        @steps = @steps.sort.to_h
       end
 
     end
