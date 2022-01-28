@@ -40,7 +40,7 @@ class LobbiesController < AuthenticatedController
 
   def leaderboard
     @leaderboard_list = lobby.lobby_questions.map(&:responses).flatten.group_by(&:anon_user).map do |anon_user, responses|
-      [anon_user.username, responses.map(&:points)..sum]
+      [anon_user.username, responses.map(&:points).compact.sum]
     end.to_h
   end
 
