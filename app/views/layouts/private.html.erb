@@ -13,8 +13,10 @@
     <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
   <body>
-    <%= render Component::Navbar::Navbar.new(title: 'indecision', current_user: current_user) %>
-    <%= yield %>
+    <div class="flex">
+      <%= render Component::Sidebar::Sidebar.new %>
+      <div class="h-screen overflow-y-scroll w-full"><%= yield %></div>
+    </div>
     <%= render Component::Notification::Holder.new %>
   </body>
 </html>

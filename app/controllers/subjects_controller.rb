@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SubjectsController < ApplicationController
+class SubjectsController < AuthenticatedController
   include SubjectDependencies['create_subject']
 
   def index; end

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class AuthenticatedController < ApplicationController
+
+  layout 'private'
+  
   def signed_in?
     current_user != nil
   end

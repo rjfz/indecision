@@ -7,5 +7,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   has_one_attached :avatar
-  default_scope { with_attached_avatar }
 end

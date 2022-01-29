@@ -1,4 +1,7 @@
 <%= render Component::LobbyQuestion::ResponsesChart.new lobby_question: @lobby_question %>
 <%= render Component::LobbyQuestion::ResponseTimeChart.new lobby_question: @lobby_question %>
 <%= render Component::LobbyQuestion::FastestUser.new lobby_question: @lobby_question %>
+<%= render Component::LobbyQuestion::PointDistribution.new lobby_question: @lobby_question %>
+<%= render Component::LobbyQuestion::UserAnswer.new lobby_question: @lobby_question %>
+
 
