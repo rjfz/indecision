@@ -14,7 +14,7 @@
   </head>
   <body>
     <%= render Component::Navbar::Navbar.new(title: 'indecision', current_user: current_user) %>
-    <%= yield %>
+   <div class="bg-gray-900 text-white"> <%= yield %> </div>
     <%= render Component::Notification::Holder.new %>
   </body>
 </html>

@@ -15,7 +15,7 @@
   <body>
     <div class="flex">
       <%= render Component::Sidebar::Sidebar.new %>
-      <div class="h-screen overflow-y-scroll w-full"><%= yield %></div>
+      <div class="h-screen overflow-y-scroll w-full bg-gray-900 text-white p-4"><%= yield %></div>
     </div>
     <%= render Component::Notification::Holder.new %>
   </body>

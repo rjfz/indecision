@@ -1,16 +1,16 @@
 <%= form_for answer do |f| %>
   <%= f.hidden_field :question_id, value: answer.question_id %>
   <div class="rounded-xl max-w-7xl mx-auto border mb-4">
-    <div class="grid grid-cols-4 p-8">
+    <div class="grid grid-cols-4 gap-4 p-8">
       <div class="text-left col-span-2">
-        <%= f.text_field :value %>
+        <%= f.text_field :value, class:"border border-white rounded-md bg-transparent" %>
       </div>
       <div>
-        <%= f.check_box :correct %>
+        <%= f.check_box :correct%>
         <%= f.label :correct %>
       </div>
       <div>
-        <%= f.submit class: 'btn btn-success' %>
+        <%= f.submit class: 'btn btn-success bg-gray-700 px-6 py-2 rounded-md' %>
       </div>
     </div>
   </div>

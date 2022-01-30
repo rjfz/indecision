@@ -1,28 +1,30 @@
   <%= form_for lesson do |f| %>
-    <div class="grid grid-cols-12 gap-4 py-4">
-      <div class="col-span-4">
-        <%= f.label :course %>
-        <%= f.collection_select :course_id, courses, :id, :summary, {}, { class: 'min-w-full' } %>
+    <div class="grid grid-cols-4 gap-4 py-4 ">
+      <%= f.label :course %>
+      <%= f.label :name %>
+      <%= f.label :lesson_number %>
+      <%= f.label :image %>
+      <div>
+        <%= f.hidden_field :course_id, value: lesson.course_id %>
+        <p> <%= Presenter.from(lesson.course).first.summary %></p>
       </div>
-      <div class="col-span-4">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'w-full' %>
+      <div>
+        <%= f.text_field :name, class: 'border border-white rounded-md bg-transparent w-full' %>
       </div>
-      <div class="col-span-4">
-        <%= f.label :lesson_number %>
-        <%= f.text_field :number, class: 'w-full' %>
+      <div>
+        <%= f.text_field :number, class: 'border border-white rounded-md bg-transparent w-full' %>
       </div>
-      <div class="flex w-full items-center justify-center bg-grey-lighter">
-        <label class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+      <div class="w-full items-center">
+        <label class="flex flex-row items-center justify-around py-1 bg-grey text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
           <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
           </svg>
-          <span class="mt-2 text-base leading-normal">Select a file</span>
+          <span class="text-base leading-normal">Select a file</span>
           <%= f.file_field :image, class: 'hidden' %>
         </label>
       </div>
-      </div>
-      <div>
-        <%= f.submit class: 'btn btn-success' %>
-      </div>
+    </div>
+    <div>
+      <%= f.submit class: 'btn btn-success bg-gray-700 px-6 py-2 rounded-md' %>
+    </div>
   <% end %>

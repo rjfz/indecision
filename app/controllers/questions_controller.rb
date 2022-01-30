@@ -29,11 +29,15 @@ class QuestionsController < AuthenticatedController
     @question ||= Question.find(params[:id])
   end
 
-  def question_params
-    symbolize params.require(:question).permit(
-      :title,
-      :time_limit,
-      :lesson_id
-    )
+  def create_question_params
+    symbolize params.require(:question).permit(:title, :time_limit, :lesson_id)
+  end
+
+  def update_question_params
+    symbolize params.require(:question).permit(:title, :time_limit)
+  end
+
+  def preload_params
+    symbolize params.permit(:lesson_id)
   end
 end

@@ -11,16 +11,16 @@ class LessonsController < AuthenticatedController
   end
 
   def new
-    @lesson = Lesson.new
+    @lesson = Lesson.new(**preload_params)
   end
 
   def create
-    @lesson = create_lesson.call(lesson_params)
+    @lesson = create_lesson.call(create_lesson_params)
     redirect_to course_path(@lesson.course)
   end
 
   def update
-    @lesson = update_lesson.call(lesson: lesson, **lesson_params)
+    @lesson = update_lesson.call(lesson: lesson, **update_lesson_params)
     redirect_to @lesson
   end
 
@@ -30,12 +30,15 @@ class LessonsController < AuthenticatedController
     @lesson ||= Lesson.find(params[:id])
   end
 
-  def lesson_params
-    symbolize params.require(:lesson).permit(
-      :name,
-      :number,
-      :course_id,
-      :image
-    )
+  def create_lesson_params
+    symbolize params.require(:lesson).permit(:name, :number, :course_id, :image)
+  end
+
+  def update_lesson_params
+    symbolize params.require(:lesson).permit(:name, :number, :image)
+  end
+
+  def preload_params
+    symbolize params.permit(:course_id)
   end
 end

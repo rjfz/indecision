@@ -2,6 +2,7 @@
 
 class Presenter
   def self.from(records)
+    records = [records].flatten
     presenter_klass = "Presenters::#{records.first.class.name}".constantize
 
     records.map { presenter_klass.new(_1)}

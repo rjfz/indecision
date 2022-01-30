@@ -1,17 +1,18 @@
 <%= form_for question do |f| %>
-  <div class="grid grid-cols-12 gap-4 py-4">
-    <div class="col-span-4">
+  <div class="grid grid-cols-3 gap-4 py-4">
+    <div>
       <%= f.label :lesson %>
-      <%= f.collection_select :lesson_id, lessons, :id, :name, {}, { class: 'min-w-full' } %>
+       <%= f.hidden_field :lesson_id, value: question.lesson_id %>
+        <p> <%= Presenter.from(question.lesson).first.name %></p>
     </div>
-    <div class="col-span-4">
+    <div>
       <%= f.label :Question %>
-      <%= f.text_field :title, class: 'w-full' %>
+      <%= f.text_field :title, class: 'border border-white rounded-md bg-transparent w-full' %>
     </div>
-      <div class="col-span-4">
+      <div>
       <%= f.label :time_limit %>
-      <%= f.text_field :time_limit, class: 'w-full' %>
+      <%= f.text_field :time_limit, class: ' border border-white rounded-md bg-transparent w-full' %>
     </div>
-  <%= f.submit class: 'btn btn-success' %>
   </div>
+  <%= f.submit class: 'btn btn-success bg-gray-700 px-6 py-2 rounded-md' %>
 <% end %>
