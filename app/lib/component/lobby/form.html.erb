@@ -1,16 +1,18 @@
 <%= form_for lobby do |f| %>
-  <div class="grid grid-cols-12 gap-4 py-4">
-    <div class="col-span-4">
+  <div class="grid grid-cols-3 gap-4 py-4">
+    <div>
       <%= f.label :lesson %>
-      <%= f.collection_select :lesson_id, lessons, :id, :name, {}, { class: 'min-w-full' } %>
+      <%= f.hidden_field :lesson_id, value: lobby.lesson_id %>
+        <p> <%= Presenter.from(lobby.lesson).first.name %></p>
     </div>
-    <div class="col-span-4">
+    <div>
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'w-full' %>
+      <%= f.text_field :name, class: 'border border-white rounded-md bg-transparent w-full' %>
     </div>
-      <div class="col-span-4">
+    <div>
       <%= f.label :date%>
-      <%= f.text_field :session_date, class: 'w-full' %>
+      <%= f.text_field :session_date, class: 'border border-white rounded-md bg-transparent w-full' %>
     </div>
-  <%= f.submit class: 'btn btn-success' %>
+  </div>
+  <%= f.submit class: 'btn btn-success bg-gray-700 px-6 py-2 rounded-md' %>
 <% end %>

@@ -13,7 +13,7 @@ class LobbiesController < AuthenticatedController
   end
 
   def new
-    @lobby = Lobby.new(lesson_id: params[:lesson_id])
+    @lobby = Lobby.new(**preload_params)
   end
 
   def create
@@ -50,18 +50,20 @@ class LobbiesController < AuthenticatedController
     @lobby ||= Lobby.find(params[:id])
   end
 
-  def lobby_params
-    symbolize params.require(:lobby).permit(
-      :lesson_id,
-      :room_code,
-      :session_date,
-      :name,
-      :state
-    )
+  def create_lobby_params
+    symbolize params.require(:lobby).permit(:lesson_id, :room_code, :session_date, :name, :state)
+  end
+
+  def update_lobby_params
+    symbolize params.require(:lobby).permit(:room_code, :session_date, :name, :state)
+  end
+
+  def preload_params
+    symbolize params.permit(:lesson_id)
   end
 
   def highscore
-    @highscore ||=  Leaderboard.new(
+    @highscore ||= Leaderboard.new(
       'highscores',
       Leaderboard::DEFAULT_OPTIONS,
       {host: 'redis', port: 6379, db: 1}
