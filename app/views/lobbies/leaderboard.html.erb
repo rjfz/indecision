@@ -1,6 +1,13 @@
 <%= turbo_frame_tag "#{dom_id(@lobby)}_panel" do %>
-  LEADERBOARD!
-  <%= @leaderboard_list %>
+  <h3 class="text-4xl md:text-6xl mx-auto text-center	text-yellow-300 font-heading font-bold z-10 tracking-widest select-none">LEADERBOARD</h3>
+  <div class="divide-y md:w-1/2 md:mx-auto">
+    <% @leaderboard_list.each do |anon_user, score| %>
+      <div class="grid grid-cols-4 gap-4 align-center py-3">
+        <p class="col-span-3 text-3xl font-extrabold font-heading text-white"><%= anon_user %></p>
+        <p class="text-right text-3xl font-extrabold font-heading text-white"><%= score %></p>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 
