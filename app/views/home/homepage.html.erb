@@ -5,7 +5,7 @@
       <div class="w-full flex flex-col">
         <h1 class="text-4xl md:text-6xl mx-auto text-yellow-300 font-heading font-bold z-10 tracking-widest select-none	">INDECISION</h1>
         <div class="w-full pt-16 pb-32 flex justify-around">
-          <%= form_tag room_code_lobbies_path, action: :post, class: 'mx-auto w-96 flex flex-row z-10' do %>
+          <%= form_tag room_code_public_lobbies_path, action: :post, class: 'mx-auto w-96 flex flex-row z-10' do %>
             <input type="text" id="search" name="search" placeholder="Enter room code" class="bg-gray-800 text-white" autofocus="true" />
             <button type="submit" class="ml-2 px-2 py-2 rounded-xl border-white border-2 text-white">
               <%= heroicon 'search', options: { class: 'h-6 w-6 text-white' } %>

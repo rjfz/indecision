@@ -17,12 +17,12 @@ class LobbiesController < AuthenticatedController
   end
 
   def create
-    @lobby = create_lobby.call(lobby_params)
+    @lobby = create_lobby.call(create_lobby_params)
     redirect_to @lobby
   end
 
   def update
-    @lobby = update_lobby.call(lobby: lobby, **lobby_params)
+    @lobby = update_lobby.call(lobby: lobby, **update_lobby_params)
   end
 
   def room_code

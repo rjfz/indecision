@@ -12,9 +12,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
-  <body>
-    <%= render Component::Navbar::Navbar.new(title: 'indecision', current_user: current_user) %>
-   <div class="bg-gray-900 text-white"> <%= yield %> </div>
+  <body class="min-h-screen flex flex-col">
+    <div>
+      <%= render Component::Navbar::Navbar.new(title: 'indecision', current_user: current_user) %>
+    </div>
+    <div class="bg-gray-900 text-white flex-grow"><%= yield %></div>
     <%= render Component::Notification::Holder.new %>
   </body>
 </html>

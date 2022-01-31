@@ -1,5 +1,29 @@
 <%= turbo_frame_tag dom_id(Response.new) do %>
-  Hey your answer was: <%= response.answer.value %>
-  <br>
-  This is the correct answer:<%= response.lobby_question.question.answers.where(correct: true).first.value %>
+  <div class="flex flex-col w-72 mx-auto">
+    <p class="pt-8 text-2xl text-yellow-300"><%= response.anon_user.username %></p>
+    <div class="mt-8 text-xl text-yellow-300">
+      <p class="mx-auto p-4 border border-yellow-300 rounded-md">Score: <%= Response.where(lobby_question_id: response.lobby_question.lobby.lobby_question_ids, anon_user_id: response.anon_user.id).pluck(:points).sum %></p>
+    </div>
+    <div class="pt-8">
+      <p>Your answer</p>
+      <p class="p-2 text-2xl"><%= response.answer.value %></p>
+      <p>was</p>
+
+      <% answers = response.lobby_question.question.answers.where(correct: true).pluck(:value) %>
+
+      <% if answers.include?(response.answer.value) %>
+        <p class="p-2 font-bold text-green-500 text-lg">CORRECT</p>
+      <% else %>
+        <p class="p-2 font-bold text-red-500 text-lg">INCORRECT</p>
+        <p class="mt-8">The correct answer<%= answers.count >= 1 ? 's were' : ' was'%></p>
+        <% answers.each_with_index do |answer, index| %>
+          <% if index > 0 %>
+            <p class="text-lg">or</p>
+          <% end %>
+          <p class="p-2 text-lg text-green-500"><%= answer %></p>
+        <% end %>
+      <% end %>
+    </div>
+    <p class="pt-32 text-gray-400 animate-pulse">Waiting for the next question to start</p>
+  </div>
 <% end %>

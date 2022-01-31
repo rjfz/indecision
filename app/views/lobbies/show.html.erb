@@ -1,8 +1,2 @@
-<% if current_user %>
-  <%= render @lobby %>
-<% else %>
-  <%= turbo_stream_from @lobby.id %>
-  <%= turbo_frame_tag dom_id(Response.new) do %>
-  Hello <%= @anon_user.username %> Waiting...
-  <% end %>
-<% end %>
+<%= render @lobby %>
+
