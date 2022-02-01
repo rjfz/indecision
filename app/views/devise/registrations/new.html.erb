@@ -12,7 +12,7 @@
       <div>
       <%= f.label :email, class: "block text-sm font-medium"%>
           <div class="mt-1">
-            <%= f.email_field :email, autofocus: true,  autocomplete: "email", required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            <%= f.email_field :email, autofocus: true,  autocomplete: "email", required: true, class: "bg-gray-800 text-white" %>
           </div>
         </div>
 
@@ -21,12 +21,12 @@
           <% if @minimum_password_length %>
           <em class="text-sm">(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
-          <%= f.password_field :password, autocomplete: "new-password", required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          <%= f.password_field :password, autocomplete: "new-password", required: true, class: "bg-gray-800 text-white" %>
         </div>
 
         <div>
           <%= f.label :password_confirmation, class: "block text-sm mt-4 font-medium" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "bg-gray-800 text-white" %>
         </div>
 
         <div>
