@@ -14,12 +14,12 @@ class QuestionsController < AuthenticatedController
   end
 
   def create
-    @question = create_question.call(question_params)
+    @question = create_question.call(create_question_params)
     redirect_to edit_question_path(question.id)
   end
 
   def update
-    @question = update_question.call(question: question, **question_params)
+    @question = update_question.call(question: question, **update_question_params)
     redirect_to edit_lesson_path(@question.lesson)
   end
 

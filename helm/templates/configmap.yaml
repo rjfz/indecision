@@ -11,9 +11,10 @@ data:
   POSTGRES_PASSWORD: {{ index .Values.indecision.postgresPassword | quote }}
   MINIO_ROOT_USER: {{ index .Values.indecision.root_user | quote }}
   MINIO_ROOT_PASSWORD: {{ index .Values.indecision.root_password | quote }}
-  S3_ACCESS_KEY: {{ index .Values.indecision.access_key | quote }} 
+  S3_ACCESS_KEY: {{ index .Values.indecision.access_key | quote }}
   S3_SECRET_KEY: {{ index .Values.indecision.secret_key | quote }}
   S3_REGION: {{ index .Values.indecision.region | quote }}
   S3_IMAGES_BUCKET: {{ index .Values.indecision.bucket | quote }}
   S3_ENDPOINT: {{ index .Values.indecision.endpoint | quote }}
-  S3_FORCE_PATH_STYLE: {{ index .Values.indecision.force_path_style | quote }} 
+  S3_FORCE_PATH_STYLE: {{ index .Values.indecision.force_path_style | quote }}
+  REDIS_URL: {{ index .Values.indecision.redisUrl | quote }}

@@ -10,3 +10,16 @@ spec:
       storage: {{ index .Values "indecision" "storage" }}
   volumeName: {{ include "indecision.fullname" . }}-volume
   volumeMode: Filesystem
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "indecision.fullname" . }}-volume-claim-redis
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ index .Values "indecision" "storageRedis" }}
+  volumeName: {{ include "indecision.fullname" . }}-volume-redis
+  volumeMode: Filesystem

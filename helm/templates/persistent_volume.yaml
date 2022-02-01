@@ -12,3 +12,18 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   volumeMode: Filesystem
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "indecision.fullname" . }}-volume-redis
+spec:
+  capacity:
+    storage: {{ index .Values "indecision" "storageRedis" }}
+  nfs:
+    server: 192.168.30.20
+    path: /mnt/hdd/indecision-redis
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
