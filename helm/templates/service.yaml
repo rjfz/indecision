@@ -42,3 +42,22 @@ spec:
     app.kubernetes.io/name: {{ include "indecision.name" . }}-minio
     app.kubernetes.io/instance: {{ .Release.Name }}
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "indecision.fullname" . }}-svc-redis
+  labels:
+    app.kubernetes.io/name: {{ include "indecision.name" . }}
+    helm.sh/chart: {{ include "indecision.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+      targetPort: 6379
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "indecision.name" . }}-redis
+    app.kubernetes.io/instance: {{ .Release.Name }}

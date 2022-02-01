@@ -1,0 +1,31 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: {{ include "indecision.fullname" . }}-redis
+  labels:
+    app.kubernetes.io/name: {{ include "indecision.name" . }}
+    helm.sh/chart: {{ include "indecision.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCountRedis }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "indecision.name" . }}-redis
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: storage-redis
+          persistentVolumeClaim:
+            claimName: {{ include "indecision.fullname" . }}-volume-claim-redis
+      containers:
+        - name: "redis"
+          image: {{ .Values.indecision.imageRedis }}
+          volumeMounts:
+            - mountPath: "/data"
+              name: storage-redis
+          ports:
+            - name: http
+              containerPort: 6379
+              protocol: TCP
