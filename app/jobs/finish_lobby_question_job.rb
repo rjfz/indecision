@@ -8,7 +8,7 @@ class FinishLobbyQuestionJob < ApplicationJob
     Operations::LobbyQuestion::Update::EntryPoint.call(lobby_question: lobby_question, state: 'finished')
     calculate_points
     responses.each do |response|
-      DisplayQuestionAnswerJob.perform(response)
+      DisplayQuestionAnswerJob.perform_now(response)
     end
   end
 
