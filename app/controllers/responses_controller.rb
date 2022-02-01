@@ -14,7 +14,6 @@ class ResponsesController < AuthenticatedController
     timer = @response.lobby_question.started_at + @response.lobby_question.question.time_limit.seconds
     return timer_expired if Time.now > timer
 
-    DisplayQuestionAnswerJob.set(wait_until: timer).perform_later(@response)
     redirect_to @response
   end
 
