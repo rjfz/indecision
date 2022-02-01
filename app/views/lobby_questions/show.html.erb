@@ -1,3 +1,4 @@
+ <%= link_to 'Return to Lobby', lobby_path(@lobby_question.lobby), class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 <%= render Component::LobbyQuestion::ResponsesChart.new lobby_question: @lobby_question %>
 <%= render Component::LobbyQuestion::ResponseTimeChart.new lobby_question: @lobby_question %>
 <%= render Component::LobbyQuestion::FastestUser.new lobby_question: @lobby_question %>

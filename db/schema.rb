@@ -117,11 +117,11 @@ ActiveRecord::Schema.define(version: 2022_01_27_152616) do
   end
 
   create_table "responses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "lobby_question_id", null: false
     t.uuid "answer_id", null: false
     t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "lobby_question_id", null: false
     t.uuid "anon_user_id", null: false
     t.integer "points", default: 0
     t.index ["anon_user_id"], name: "index_responses_on_anon_user_id"
