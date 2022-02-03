@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   resources :answers
   resources :responses
   resources :lobby_questions, only: [:update, :show]
+  resources :years
 end

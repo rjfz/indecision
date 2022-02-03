@@ -1,0 +1,10 @@
+<%= form_for year do |f| %>
+  <div class="grid grid-cols-3 gap-4 py-4">
+    <div>
+      <%= f.label :academic_year %>
+      <%= f.text_field :academic_year, value: year.academic_year, class: 'border border-white rounded-md bg-transparent w-full' %>
+    </div>
+
+  </div>
+  <%= f.submit class: 'btn btn-success bg-gray-700 px-6 py-2 rounded-md' %>
+<% end %>

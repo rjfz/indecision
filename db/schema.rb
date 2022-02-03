@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_152616) do
+ActiveRecord::Schema.define(version: 2022_02_02_152619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,9 @@ ActiveRecord::Schema.define(version: 2022_01_28_152616) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "state"
+    t.uuid "years_id", null: false
     t.index ["lesson_id"], name: "index_lobbies_on_lesson_id"
+    t.index ["years_id"], name: "index_lobbies_on_years_id"
   end
 
   create_table "lobby_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -152,6 +154,12 @@ ActiveRecord::Schema.define(version: 2022_01_28_152616) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "years", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "academic_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "anon_user_lobbies", "anon_users"
@@ -160,6 +168,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_152616) do
   add_foreign_key "courses", "subjects"
   add_foreign_key "lessons", "courses"
   add_foreign_key "lobbies", "lessons"
+  add_foreign_key "lobbies", "years", column: "years_id"
   add_foreign_key "lobby_questions", "lobbies"
   add_foreign_key "lobby_questions", "questions"
   add_foreign_key "questions", "lessons"

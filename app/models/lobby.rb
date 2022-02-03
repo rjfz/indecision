@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Lobby < ApplicationRecord
+  belongs_to :year
   belongs_to :lesson
   has_many :lobby_questions
   has_many :anon_user_lobbies
