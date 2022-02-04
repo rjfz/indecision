@@ -51,11 +51,11 @@ class LobbiesController < AuthenticatedController
   end
 
   def create_lobby_params
-    symbolize params.require(:lobby).permit(:lesson_id, :room_code, :session_date, :name, :state)
+    symbolize params.require(:lobby).permit(:lesson_id, :room_code, :session_date, :name, :state, :year_id)
   end
 
   def update_lobby_params
-    symbolize params.require(:lobby).permit(:room_code, :session_date, :name, :state)
+    symbolize params.require(:lobby).permit(:room_code, :session_date, :name, :state, :year_id)
   end
 
   def preload_params

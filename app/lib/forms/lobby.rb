@@ -6,7 +6,9 @@ module Forms
     attribute :session_date, :datetime
     attribute :name, :string
     attribute :state, :string, default: 'pending'
+    attribute :year_id, :uuid
 
-    validates :lesson_id, :session_date, :name, presence: true
+    validates :lesson_id, :session_date, :name, :year_id, presence: true
+
   end
 end

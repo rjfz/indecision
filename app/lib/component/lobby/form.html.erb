@@ -1,5 +1,5 @@
 <%= form_for lobby do |f| %>
-  <div class="grid grid-cols-3 gap-4 py-4">
+  <div class="grid grid-cols-4 gap-4 py-4">
     <div>
       <%= f.label :lesson %>
       <%= f.hidden_field :lesson_id, value: lobby.lesson_id %>
@@ -12,6 +12,10 @@
     <div>
       <%= f.label :date%>
       <%= f.text_field :session_date, class: 'border border-white rounded-md bg-transparent w-full' %>
+    </div>
+    <div>
+      <%= f.label :academic_year%>
+      <%= f.collection_select :year_id, Year.all, :id, :academic_year, {}, class: 'border border-white rounded-md bg-transparent w-full' %>
     </div>
   </div>
   <%= f.submit class: 'btn btn-success bg-gray-700 px-6 py-2 rounded-md' %>

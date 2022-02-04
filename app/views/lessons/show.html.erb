@@ -9,11 +9,16 @@
         <p class="text-xl text-gray-500">Odio nisi, lectus dis nulla. Ultrices maecenas vitae rutrum dolor ultricies donec risus sodales. Tempus quis et.</p>
       </div>
       <h2 class='text-lg'>Lobbies</h2>
-      <ul role="list" class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3 lg:gap-x-8">
-      <% @lesson.lobbies.each do |lobby| %>
-         <%= render Component::Course::ShowLobby.new(lobby: lobby) %>
+      <% @lesson.lobbies.includes(:year).order('years.created_at desc').group_by(&:year).each do |year, lobbies| %>
+        <div class='border border-white rounded-xl p-8'>
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl"><%= year.academic_year %></h2>
+        <ul role="list" class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3 lg:gap-x-8">
+          <% lobbies.each do |lobby| %>
+            <%= render Component::Course::ShowLobby.new(lobby: lobby) %>
+          <% end %>
+        </ul>
+        </div>
       <% end %>
-      </ul>
     </div>
   </div>
 </div>

@@ -92,9 +92,9 @@ ActiveRecord::Schema.define(version: 2022_02_02_152619) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "state"
-    t.uuid "years_id", null: false
+    t.uuid "year_id", null: false
     t.index ["lesson_id"], name: "index_lobbies_on_lesson_id"
-    t.index ["years_id"], name: "index_lobbies_on_years_id"
+    t.index ["year_id"], name: "index_lobbies_on_year_id"
   end
 
   create_table "lobby_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_152619) do
   add_foreign_key "courses", "subjects"
   add_foreign_key "lessons", "courses"
   add_foreign_key "lobbies", "lessons"
-  add_foreign_key "lobbies", "years", column: "years_id"
+  add_foreign_key "lobbies", "years"
   add_foreign_key "lobby_questions", "lobbies"
   add_foreign_key "lobby_questions", "questions"
   add_foreign_key "questions", "lessons"
