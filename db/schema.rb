@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_152619) do
+ActiveRecord::Schema.define(version: 2022_02_07_152639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2022_02_02_152619) do
     t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "user_id"
+    t.index ["user_id"], name: "index_anon_users_on_user_id"
   end
 
   create_table "answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -131,6 +133,21 @@ ActiveRecord::Schema.define(version: 2022_02_02_152619) do
     t.index ["user_id"], name: "index_responses_on_user_id"
   end
 
+  create_table "role_permissions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "role_id", null: false
+    t.string "resource"
+    t.string "action"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_role_permissions_on_role_id"
+  end
+
+  create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -150,8 +167,10 @@ ActiveRecord::Schema.define(version: 2022_02_02_152619) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "role_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   create_table "years", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -164,6 +183,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_152619) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "anon_user_lobbies", "anon_users"
   add_foreign_key "anon_user_lobbies", "lobbies"
+  add_foreign_key "anon_users", "users"
   add_foreign_key "answers", "questions"
   add_foreign_key "courses", "subjects"
   add_foreign_key "lessons", "courses"
@@ -176,4 +196,6 @@ ActiveRecord::Schema.define(version: 2022_02_02_152619) do
   add_foreign_key "responses", "answers"
   add_foreign_key "responses", "lobby_questions"
   add_foreign_key "responses", "users"
+  add_foreign_key "role_permissions", "roles"
+  add_foreign_key "users", "roles"
 end

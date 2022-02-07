@@ -25,6 +25,9 @@ class ApplicationController < ActionController::Base
                  else
                    Operations::AnonUser::Create::EntryPoint.call
                  end
+
+    Operations::AnonUser::Update::EntryPoint.call(anon_user: @anon_user, user_id: current_user.id) if current_user
+
     cookies[:user_identifier] = @anon_user.id
     @anon_user
   end

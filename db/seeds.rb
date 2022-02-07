@@ -11,3 +11,10 @@
 subject = Subject.find_or_create_by(name: 'Computer Science')
 
     Course.create!(name: 'Internet Applications and Techniques', subject: subject)
+
+admin = Role.create!(name: 'admin')
+staff = Role.create!(name: 'staff')
+student = Role.create!(name: 'student')
+anon_user = Role.create!(name: 'anon_user' )
+
+user = User.create!(email: 'fake@fakemail.com', password: 'password', role: student)
