@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
-  has_many :anon_user
+  has_one :anon_user
   has_one_attached :avatar
   belongs_to :role
 end

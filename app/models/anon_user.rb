@@ -4,6 +4,6 @@ class AnonUser < ApplicationRecord
   has_many :responses
   has_many :answers, through: :responses
 
-  belongs_to :user
+  belongs_to :user, optional: true
 end
 

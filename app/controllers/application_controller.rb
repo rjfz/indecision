@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   def anon_user
     return @anon_user if @anon_user
 
+    return @anon_user = current_user.anon_user if current_user&.anon_user
+
     current_id = cookies[:user_identifier]
     @anon_user = if current_id
                    AnonUser.find(current_id)
