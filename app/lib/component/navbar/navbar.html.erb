@@ -18,7 +18,7 @@
             <% if current_user&.avatar&.attached? %>
               <%= image_tag current_user.avatar, class: 'w-6 h-6 rounded-full border border-white bg-white' %>
             <% end %>
-            <div class="text-white mx-2"> <%= current_user&.email%></div>
+            <div class="text-white mx-2"> <%= current_user.role.name == 'student' ? current_user&.anon_user.username : current_user&.email %></div>
             <%= helpers.heroicon 'chevron-down', options: { class: 'text-white h-5 w-5' } %>
           </button>
         </div>

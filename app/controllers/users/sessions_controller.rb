@@ -3,7 +3,11 @@
 module Users
   class SessionsController < Devise::SessionsController
     def after_sign_in_path_for(_resource)
-      dashboard_url
+      if resource.role.name == 'student'
+        homepage_url
+      else
+        dashboard_url
+      end
     end
 
     def after_sign_out_path_for(_resource)

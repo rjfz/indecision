@@ -11,14 +11,6 @@ module Users
       dashboard_url
     end
 
-    def after_sign_in_path_for(_resource)
-      dashboard_url
-    end
-
-    def after_sign_out_path_for(_resource)
-      homepage_url
-    end
-
     # protected
 
     # def update_resource(resource, params)
