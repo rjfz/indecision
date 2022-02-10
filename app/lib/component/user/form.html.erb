@@ -1,0 +1,15 @@
+  <%= form_for user do |f| %>
+    <div class="grid grid-cols-4 gap-4 py-4 ">
+      <div>
+       <%= f.label :email %>
+        <%= f.text_field :email, value: user.email, class: 'border border-white rounded-md bg-transparent w-full' %>
+      </div>
+      <div>
+       <%= f.label :role %>
+       <%= f.select :role_id, Role.all.map { [_1.name, _1.id, { class: 'text-black' }] }, {}, { class: 'border border-white rounded-md bg-transparent w-full' } %>
+      </div>
+    </div>
+    <div>
+      <%= f.submit class: 'btn btn-success bg-gray-700 px-6 py-2 rounded-md' %>
+    </div>
+  <% end %>

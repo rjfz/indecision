@@ -41,3 +41,4 @@ RUN bundle exec rails assets:precompile
 RUN chmod 770 /app/tmp
 
 CMD /bin/sh -c "bundle install && ./bin/rails server -p 3000 -b '0.0.0.0'"
+

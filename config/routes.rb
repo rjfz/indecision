@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get :leaderboard
     end
   end
+  resources :users
   resources :questions
   resources :answers
   resources :responses

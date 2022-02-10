@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_one :anon_user
   has_one_attached :avatar
   belongs_to :role
+  has_many :user_subjects
+  has_many :subjects, through: :user_subjects
 end
