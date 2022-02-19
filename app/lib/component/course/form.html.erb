@@ -2,7 +2,7 @@
     <div class="grid grid-cols-3 gap-4 py-4">
       <div>
         <%= f.label :subject %>
-        <%= f.collection_select :subject_id, Subject.all, :id, :name, {}, { class: 'border border-white rounded-md bg-transparent w-full' } %>
+        <%= f.select :subject_id, helpers.current_user.subjects.map { [_1.name, _1.id, { class: 'text-black' }] }, {}, { class: 'border border-white rounded-md bg-transparent w-full' } %>
       </div>
       <div>
         <%= f.label :name %>

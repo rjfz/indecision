@@ -154,14 +154,14 @@ ActiveRecord::Schema.define(version: 2022_02_07_182236) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_subject", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "user_subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["subject_id"], name: "index_user_subject_on_subject_id"
-    t.index ["user_id"], name: "index_user_subject_on_user_id"
-  end 
+    t.index ["subject_id"], name: "index_user_subjects_on_subject_id"
+    t.index ["user_id"], name: "index_user_subjects_on_user_id"
+  end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -206,7 +206,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_182236) do
   add_foreign_key "responses", "lobby_questions"
   add_foreign_key "responses", "users"
   add_foreign_key "role_permissions", "roles"
-  add_foreign_key "user_subject", "subjects"
-  add_foreign_key "user_subject", "users"
+  add_foreign_key "user_subjects", "subjects"
+  add_foreign_key "user_subjects", "users"
   add_foreign_key "users", "roles"
 end

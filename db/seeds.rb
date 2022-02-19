@@ -7,13 +7,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-subject = Subject.find_or_create_by(name: 'Computer Science')
+compsci = Subject.find_or_create_by(name: 'Computer Science')
+history = Subject.find_or_create_by(name: 'History')
+biology = Subject.find_or_create_by(name: 'Biology')
+maths = Subject.find_or_create_by(name: 'Maths')
+chem = Subject.find_or_create_by(name: 'Chemistry')
+art = Subject.find_or_create_by(name: 'Art')
+geography = Subject.find_or_create_by(name: 'Geography')
 
-course = Course.create!(name: 'Internet Applications and Techniques', subject: subject)
+course = Course.create!(name: 'Internet Applications and Techniques', subject: compsci)
 
 year = Year.create!(academic_year: '2022-2023')
 lesson = Lesson.create!(name: 'this is a lobby', number: '1', course: course)
-
 
 admin = Role.create!(name: 'admin')
 staff = Role.create!(name: 'staff')
@@ -23,6 +28,10 @@ anon_user = Role.create!(name: 'anon_user')
 user = User.create!(email: 'fake@fakemail.com', password: 'password', role: student)
 user2 = User.create!(email: 'fake2@fakemail.com', password: 'password', role: staff)
 user3 = User.create!(email: 'fake3@fakemail.com', password: 'password', role: admin)
+
+UserSubject.create!(user: user2, subject: compsci)
+UserSubject.create!(user: user2, subject: history)
+
 
 # answer permissions
 RolePermission.create!(role: admin, resource: 'answer', action: 'view')
@@ -43,6 +52,8 @@ RolePermission.create!(role: admin, resource: 'course', action: 'update')
 RolePermission.create!(role: admin, resource: 'course', action: 'delete')
 
 RolePermission.create!(role: staff, resource: 'course', action: 'view')
+RolePermission.create!(role: staff, resource: 'course', action: 'create')
+
 
 #dashboard permissions
 
