@@ -1,6 +1,25 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :answers
+      resources :role_permissions
+      resources :lobby_questions
+      resources :user_subjects
+      resources :subjects
+      resources :anon_user_lobbies
+      resources :roles
+      resources :anon_users
+      resources :years
+      resources :lessons
+      resources :courses
+      resources :questions
+      resources :lobbies
+      resources :responses
+
+      root to: "users#index"
+    end
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'

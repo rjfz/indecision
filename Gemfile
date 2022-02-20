@@ -57,6 +57,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'cancancan'
 gem 'devise'
 gem 'dry-rails', github: 'dry-rb/dry-rails'
+gem "administrate"
 
 gem 'heroicon'
 gem 'tailwindcss-rails', '~> 0.3.3'
@@ -69,5 +70,4 @@ gem 'dotenv-rails'
 gem 'tinymce-rails'
 gem 'view_component', require: 'view_component/engine'
 gem 'leaderboard'
-gem 'faker'
-
+gem 'administrate-field-active_storage'

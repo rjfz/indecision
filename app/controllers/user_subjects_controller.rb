@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserSubjectsController < AuthenticatedController
-  include UserSubjectsDependencies['update_user_subject']
+  include UserSubjectDependencies['update_user_subject']
 
   before_action :user_subject, only: %i[update show]
 
