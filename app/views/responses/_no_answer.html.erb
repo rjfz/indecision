@@ -1,0 +1,19 @@
+<%= turbo_frame_tag 'response' do %>
+  You've run out of time!
+
+  <div class="flex flex-col w-72 mx-auto">
+    <div class="pt-8">
+      <% if response.lobby_question.question.question_type != 'Open Answer' %>
+        <% answers = response.lobby_question.question.answers.where(correct: true).pluck(:value) %>
+        <p class="mt-8">The correct answer<%= answers.count >= 1 ? 's were' : ' was'%></p>
+        <% answers.each_with_index do |answer, index| %>
+          <% if index > 0 %>
+            <p class="text-lg">or</p>
+          <% end %>
+          <p class="p-2 text-lg text-green-500"><%= answer %></p>
+        <% end %>
+      <% end %>
+    </div>
+    <p class="pt-32 text-gray-400 animate-pulse">Waiting for the next question to start</p>
+  </div>
+<% end %>

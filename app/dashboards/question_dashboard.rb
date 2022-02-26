@@ -10,6 +10,7 @@ class QuestionDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     lesson: Field::BelongsTo,
     answers: Field::HasMany,
+    question_type: Field::String,
     lobby_questions: Field::HasMany,
     id: Field::String,
     title: Field::String,
@@ -27,6 +28,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     lesson
     answers
     lobby_questions
+    question_type
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -35,6 +37,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     lesson
     answers
     lobby_questions
+    question_type
     id
     title
     time_limit

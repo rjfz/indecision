@@ -7,6 +7,10 @@ class Command
       record.tap(&:save!)
     end
 
+    def destroy(record)
+      record.tap(&:destroy!)
+    end
+
     def discard(record)
       record.tap(&:discard!)
     end

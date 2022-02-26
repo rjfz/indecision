@@ -10,13 +10,17 @@ module Operations
         end
 
         def call
-          question.assign_attributes(form.attributes)
+          question.assign_attributes(attributes)
           Command.save(question)
         end
 
         private
 
         attr_reader :form, :question
+
+        def attributes
+          form.attributes.merge(question_type: Operations::Question::QuestionType::EntryPoint.call(question: question))
+        end
       end
     end
   end

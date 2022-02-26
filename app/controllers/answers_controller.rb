@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AnswersController < AuthenticatedController
-  include AnswerDependencies['create_answer', 'update_answer']
+  include AnswerDependencies['create_answer', 'update_answer', 'destroy_answer']
 
   before_action :answer, only: %i[update show edit]
 
@@ -22,6 +22,12 @@ class AnswersController < AuthenticatedController
     @answer = update_answer.call(answer: answer, **base_params)
     redirect_to edit_question_path(@answer.question)
   end
+
+  def destroy
+    @answer = destroy_answer.call(answer_id: answer.id)
+    redirect_to edit_question_path(@answer.question)
+  end
+
 
   private
 

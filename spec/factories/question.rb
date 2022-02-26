@@ -5,5 +5,6 @@ FactoryBot.define do
     association :lesson
     title { 'who is joe' }
     time_limit { '30' }
+    question_type { 'multiple_choice' }
   end
 end

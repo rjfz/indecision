@@ -1,10 +1,8 @@
-<%= turbo_frame_tag dom_id(Response.new) do %>
-  <%= turbo_stream_from @response.lobby_question_id %>
-  <%= turbo_frame_tag dom_id(@response) do %>
+<%= turbo_stream_from dom_id(@response.lobby_question) %>
+<%= turbo_frame_tag 'response' do %>
   <p>Thank you for answering <%= @response.anon_user.username %></p>
   <p>Waiting for all responses to be collected...</p>
   <% time_limit = @response.lobby_question.question.time_limit - (Time.now - @response.lobby_question.started_at).floor %>
   <p>There are currently <span class="text-gray-500 text-sm" data-controller="countdown" data-countdown-timeout-value="<%= time_limit %>"><%= time_limit %></span> seconds left for this question. </p>
-  <% end %>
 <% end %>
 

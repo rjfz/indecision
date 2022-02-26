@@ -11,10 +11,15 @@ class ResponsesController < AuthenticatedController
 
   def create
     @response = create_response.call(**response_params, anon_user_id: anon_user.id)
-    timer = @response.lobby_question.started_at + @response.lobby_question.question.time_limit.seconds
-    return timer_expired if Time.now > timer
 
-    redirect_to @response
+    if lobby_question.question.question_type == 'Quickfire'
+      if lobby_question.responses.correct.any?
+        FinishLobbyQuestionJob.perform_later(lobby_question)
+      end
+    else
+      timer = @response.lobby_question.started_at + @response.lobby_question.question.time_limit.seconds
+      return timer_expired if Time.now > timer
+    end
   end
 
   def timer_expired
@@ -31,7 +36,12 @@ class ResponsesController < AuthenticatedController
     symbolize params.require(:response).permit(
       :lobby_question_id,
       :answer_id,
-      :user_id
+      :user_id,
+      :answer_text
     )
+  end
+
+  def lobby_question
+    LobbyQuestion.find response_params[:lobby_question_id]
   end
 end

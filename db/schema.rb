@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_182236) do
+ActiveRecord::Schema.define(version: 2022_02_08_152641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,17 +116,19 @@ ActiveRecord::Schema.define(version: 2022_02_07_182236) do
     t.integer "time_limit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "question_type", null: false
     t.index ["lesson_id"], name: "index_questions_on_lesson_id"
   end
 
   create_table "responses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "answer_id", null: false
+    t.uuid "answer_id"
     t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "lobby_question_id", null: false
     t.uuid "anon_user_id", null: false
     t.integer "points", default: 0
+    t.string "answer_text"
     t.index ["anon_user_id"], name: "index_responses_on_anon_user_id"
     t.index ["answer_id"], name: "index_responses_on_answer_id"
     t.index ["lobby_question_id"], name: "index_responses_on_lobby_question_id"

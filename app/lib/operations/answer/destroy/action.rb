@@ -2,25 +2,21 @@
 
 module Operations
   module Answer
-    module Create
+    module Destroy
       class Action
-        def initialize(form)
-          @form = form
+        def initialize(answer)
+          @answer = answer
         end
 
         def call
-          Command.save(answer).tap do |answer|
+          Command.destroy(answer).tap() do |answer|
             Operations::Question::Update::EntryPoint.call(question: answer.question)
-          end
         end
+      end
 
         private
 
-        attr_reader :form
-
-        def answer
-          @answer ||= ::Answer.new(attributes: form.attributes)
-        end
+        attr_reader :answer
       end
     end
   end

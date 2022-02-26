@@ -25,19 +25,6 @@ class LobbiesController < AuthenticatedController
     @lobby = update_lobby.call(lobby: lobby, **update_lobby_params)
   end
 
-  def room_code
-    room_code = params[:search].upcase
-    lobby = Lobby.find_by(room_code: room_code)
-
-    if lobby
-      create_anon_user_lobby.call(lobby_id: lobby.id, anon_user_id: anon_user.id)
-      return redirect_to lobby
-    end
-
-    flash[:error] = 'Room code not found'
-    redirect_to homepage_path
-  end
-
   def leaderboard
     @leaderboard_list = lobby.lobby_questions.map(&:responses).flatten.group_by(&:anon_user).map do |anon_user, responses|
       [anon_user.username, responses.map(&:points).compact.sum]

@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :answer do
     association :question
-    value { 'value' }
-    correct { 'true' }
+    value { Faker::Lorem.sentence }
+    correct { [true, false].sample }
   end
 end

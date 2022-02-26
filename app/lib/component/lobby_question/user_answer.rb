@@ -14,8 +14,14 @@ module Component
       end
 
       def user_answers
-        user_answers ||= lobby_question.responses.map do |response|
+        if lobby_question.question.question_type == 'Open Answer'
+          @user_answers ||= lobby_question.responses.map do |response|
+            [response.anon_user.username, response.answer_text]
+          end
+          else
+        @user_answers ||= lobby_question.responses.map do |response|
           [response.anon_user.username, response.answer.value]
+        end
         end.to_h
       end
     end
