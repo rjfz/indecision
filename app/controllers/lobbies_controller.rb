@@ -5,7 +5,7 @@ class LobbiesController < AuthenticatedController
   include LobbyDependencies['create_lobby', 'update_lobby']
   include AnonUserLobbyDependencies['create_anon_user_lobby']
 
-  before_action :lobby, only: %i[show stats room_information leaderboard]
+  before_action :lobby, only: %i[show stats room_information leaderboard individual cohort]
   before_action :highscore, only: %i[leaderboard]
 
   def index
@@ -30,6 +30,13 @@ class LobbiesController < AuthenticatedController
       [anon_user.username, responses.map(&:points).compact.sum]
     end.to_h.sort_by{|k, v| v}.reverse
   end
+
+  def cohort
+  end
+
+  def individual
+  end
+
 #
   private
 

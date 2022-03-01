@@ -3,7 +3,7 @@
 class CoursesController < AuthenticatedController
   include CourseDependencies['create_course']
 
-  before_action :course, only: %i[show]
+  before_action :course, only: %i[show stats]
 
   def index; end
 

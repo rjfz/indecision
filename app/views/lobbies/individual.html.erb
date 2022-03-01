@@ -1,0 +1,36 @@
+<%= turbo_frame_tag "#{dom_id(@lobby)}_panel" do %>
+  <% lobby_questions = @lobby.lobby_questions.includes(:question).order(started_at: :asc) %>
+  <% question_order = lobby_questions.ids %>
+
+  <div class="grid grid-cols-<%= lobby_questions.count + 3 %> border-solid border border-white divide-x">
+    <div class="p-4">Name</div>
+    <% lobby_questions.each do |question|%>
+      <div class="p-4"><%= question.question.title.humanize %></div>
+    <% end %>
+    <div class="p-4"> Response Rate </div>
+    <div class="p-4"> Percentage Correct</div>
+  </div>
+
+  <% users = @lobby.anon_users.includes(responses: [:answer]).order(username: :asc) %>
+  <% users.each do |user|%>
+    <div class="grid grid-cols-<%= lobby_questions.count + 3 %> border-solid border border-white divide-x">
+      <div class="p-4"><%= user.username.humanize %></div>
+      <% responses = user.responses.where(lobby_question_id: question_order).map { [_1.lobby_question_id, _1] }.to_h %>
+      <% question_order.each do |question| %>
+        <% if responses[question] %>
+          <div class="p-4 bg-opacity-75 <%= responses[question].lobby_question.question.question_type == 'Open Answer' ? '' : (responses[question].correct? ? 'bg-green-500' : 'bg-red-500') %>">
+            <%= responses[question].answer_text || responses[question].answer.value %>
+          </div>
+        <% else %>
+          <div></div>
+        <% end %>
+      <% end %>
+      <% response_rate = (responses.count.to_f / question_order.count) * 100 %>
+      <div class="p-4"><%= response_rate %>%</div>
+
+      <% correct_responses = responses.values.reject{ _1.lobby_question.question.question_type == 'Open Answer' }.map(&:correct?).count(true) %>
+      <% percentage_correct = (correct_responses / responses.count.to_f) * 100 %>
+      <div class="p-4"><%= percentage_correct.round(2) %>%</div>
+    </div>
+  <% end %>
+<% end %>

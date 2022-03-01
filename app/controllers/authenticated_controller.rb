@@ -9,6 +9,8 @@ class AuthenticatedController < ApplicationController
     stats: :view,
     room_information: :view,
     leaderboard: :view,
+    cohort: :view,
+    individual: :view,
     show: :view,
     new: :create,
     create: :create,

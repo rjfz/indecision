@@ -30,8 +30,16 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#dashboard', as: :dashboard
   get '/about', to: 'about#about', as: :about
 
-  resources :lessons
-  resources :courses
+  resources :lessons do
+    member do
+      get :stats
+    end
+  end
+  resources :courses do
+    member do
+      get :stats
+    end
+  end
   resources :subjects
   resources :public_lobbies do
     collection do
@@ -43,6 +51,8 @@ Rails.application.routes.draw do
       get :stats
       get :room_information
       get :leaderboard
+      get :cohort
+      get :individual
     end
   end
   resources :users

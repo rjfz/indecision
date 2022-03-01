@@ -3,8 +3,7 @@
 class LessonsController < AuthenticatedController
   include LessonDependencies['create_lesson', 'update_lesson']
 
-
-  before_action :lesson, only: %i[show edit]
+  before_action :lesson, only: %i[show edit stats]
 
   def index
     @lessons = Presenter.from(Lesson.all) if Lesson.any?
