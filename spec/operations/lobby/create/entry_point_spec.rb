@@ -10,7 +10,8 @@ RSpec.describe Operations::Lobby::Create::EntryPoint do
       lesson_id: lesson.id,
       name: name,
       session_date: session_date,
-      state: state
+      state: state,
+      year_id: year.id
     }
   end
 
@@ -18,6 +19,7 @@ RSpec.describe Operations::Lobby::Create::EntryPoint do
   let(:name) { 'Game Design' }
   let(:session_date) { '12/2/2021' }
   let(:state) { 'started' }
+  let(:year) { create(:year) }
 
   context 'when all parameters are supplied' do
     it_behaves_like 'create entrypoint', Lobby

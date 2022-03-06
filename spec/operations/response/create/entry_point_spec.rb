@@ -9,14 +9,14 @@ RSpec.describe Operations::Response::Create::EntryPoint do
     {
       lobby_question_id: lobby_question.id,
       answer_id: answer.id,
-      user_id: user.id
-
-
+      user_id: user.id,
+      anon_user_id: anon_user.id
     }
   end
   let(:lobby_question) { create(:lobby_question) }
   let(:answer) { create(:answer) }
   let(:user) { create(:user) }
+  let(:anon_user) { create(:anon_user) }
 
   context 'when all parameters are supplied' do
     it_behaves_like 'create entrypoint', Response
