@@ -8,6 +8,8 @@ class FinishLobbyQuestionJob < ApplicationJob
   def perform(lobby_question)
     @lobby_question = lobby_question
     Operations::LobbyQuestion::Update::EntryPoint.call(lobby_question: lobby_question, state: 'finished')
+    lobby_id = lobby_question.lobby_id
+    lobby_question.lobby.lobby_questions.each{ _1.broadcast_replace_to "lobby_#{lobby_id}_questions" }
     if lobby_question.question.question_type != 'Open Answer'
       calculate_points
     end

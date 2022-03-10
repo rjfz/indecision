@@ -8,9 +8,13 @@ RSpec.describe FinishLobbyQuestionJob do
   let(:anon_user2) { create(:anon_user, username: 'goofy mcgoof') }
   let(:anon_user3) { create(:anon_user, username: 'jesus mcjesus') }
   let(:question) { create(:question, title: 'joe who is', time_limit: 30) }
+  let(:question2) { create(:question, title: 'quickfire', time_limit: 0) }
   let(:answer1) { create(:answer, value: 'correct', correct: true, question: question) }
   let(:answer2) { create(:answer, value: 'wrong', correct: false, question: question) }
+  let(:quickfireanswer1) { create(:answer, value: 'correct', correct: true, question: question2)}
+  let(:quickfireanswer2) { create(:answer, value: 'wrong', correct: false, question: question2)}
   let(:lobby_question) { create(:lobby_question, started_at: Time.now, state: 'started', question: question, lobby: lobby) }
+  let(:lobby_question2) { create(:lobby_question, started_at: Time.now, state: 'started', question: question2, lobby: lobby) }
 
   context 'when a single correct answer is supplied' do
     let(:response1) { create(:response, answer: answer1, anon_user: anon_user1, lobby_question: lobby_question)}
@@ -82,4 +86,22 @@ RSpec.describe FinishLobbyQuestionJob do
       expect(response3.reload.points).to eq 0
     end
   end
-end
+
+#   context 'when the first answer is taken in a quickfire round' do
+#     let(:response1) { create(:response, created_at: Time.now + 15.seconds, answer: quickfireanswer1, anon_user: anon_user1, lobby_question: lobby_question2)}
+#     let(:response2) { create(:response, created_at: Time.now + 36.seconds, answer: quickfireanswer1, anon_user: anon_user2, lobby_question: lobby_question2)}
+#     let(:response3) { create(:response, created_at: Time.now + 37.seconds, answer: quickfireanswer1, anon_user: anon_user3, lobby_question: lobby_question2)}
+
+
+# before do
+#   response1
+#   response2
+#   response3
+#   subject
+# end
+
+# it 'should add 15 points to the quickest response' do
+#   expect(response1.reload.points).to eq 15
+# end
+# end
+ end
