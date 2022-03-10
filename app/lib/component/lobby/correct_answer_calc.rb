@@ -20,7 +20,10 @@ module Component
           correct_responses = lobby_question.responses.where(answer_id: answer_ids).count
           all_responses = lobby_question.responses.count
 
-          [lobby_question.question.title, ((correct_responses.to_f / all_responses.to_f) * 100)]
+          correct_rate = (correct_responses.to_f / all_responses.to_f)
+          correct_rate = 0 if correct_rate.nan?
+
+          [lobby_question.question.title, (correct_rate * 100)]
         end.to_h
       end
     end

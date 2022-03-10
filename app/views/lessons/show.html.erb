@@ -1,14 +1,20 @@
  <div>
- <%= link_to 'Create Lobby', new_lobby_path(lesson_id: @lesson.id), class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
  <%= link_to 'Back to Modules', @lesson.course, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
- <%= link_to 'Edit Lesson', edit_lesson_path(@lesson)	, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+ <% if @lesson.questions.where(question_type: 'Invalid').any? || @lesson.questions.none? %>
+   <%= link_to 'Create Lobby', '#', class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-gray-200 bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" %>
+ <% else %>
+ <%= link_to 'Create Lobby', new_lobby_path(lesson_id: @lesson.id), class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+<% end %>
+ <% if @lesson.lobbies.where(state: 'finished').none? %>
+    <%= link_to 'Lesson Stats', '#'	, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-gray-200 bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" %>
+  <% else %>
  <%= link_to 'Lesson Stats', stats_lesson_path(@lesson)	, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-
+  <% end %>
+ <%= link_to 'Edit Lesson', edit_lesson_path(@lesson)	, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   <div class="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
     <div class="space-y-12">
       <div class="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
         <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl"><%= @lesson.name %></h2>
-        <p class="text-xl text-gray-500">Odio nisi, lectus dis nulla. Ultrices maecenas vitae rutrum dolor ultricies donec risus sodales. Tempus quis et.</p>
       </div>
       <h2 class='text-lg'>Lobbies</h2>
       <% @lesson.lobbies.includes(:year).order('years.created_at desc').group_by(&:year).each do |year, lobbies| %>

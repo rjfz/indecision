@@ -10,8 +10,9 @@ class ResponsesController < AuthenticatedController
   end
 
   def create
+    if Response.where(anon_user_id: anon_user.id, lobby_question_id: response_params[:lobby_question_id]).none?
     @response = create_response.call(**response_params, anon_user_id: anon_user.id)
-
+    end
     if lobby_question.question.question_type == 'Quickfire'
       if lobby_question.responses.correct.any?
         FinishLobbyQuestionJob.perform_later(lobby_question)

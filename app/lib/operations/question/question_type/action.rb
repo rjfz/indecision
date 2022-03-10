@@ -10,15 +10,14 @@ module Operations
 
         def call
           if question.time_limit.zero?
-            if question.answers.any?
+            if question.answers.where(correct: true).any?
               'Quickfire'
             else
               'Invalid'
             end
-
           else
             if question.answers.any?
-              'Multiple Choice'
+              question.answers.where(correct: true).any? ? 'Multiple Choice' : 'Invalid'
             else
               'Open Answer'
             end

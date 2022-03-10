@@ -6,7 +6,7 @@ module Users
       if resource.role.name == 'student'
         homepage_url
       else
-        dashboard_url
+        courses_url
       end
     end
 

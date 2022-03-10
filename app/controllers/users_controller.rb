@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     def update
       @user = update_user.call(user: user, **user_params)
-      redirect_to dashboard_path
+      redirect_to courses_path
     end
 
     def show

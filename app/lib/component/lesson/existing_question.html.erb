@@ -1,12 +1,15 @@
 <%= form_for question do |f| %>
   <%= f.hidden_field :lesson_id, value: question.lesson_id %>
   <div class="rounded-xl max-w-7xl mx-auto border mb-4">
-    <div class="grid grid-cols-5 gap-4 p-8">
+    <div class="grid grid-cols-6 gap-4 p-8">
       <div class="text-left col-span-2">
         <%= f.text_field :title, class:'border border-white rounded-md bg-transparent' %>
       </div>
       <div>
         <%= f.text_field :time_limit, class:'border border-white rounded-md bg-transparent' %>
+      </div>
+      <div>
+        <%= question.question_type %>
       </div>
       <div>
         <%= f.submit class: 'btn btn-success bg-gray-700 px-6 py-2 rounded-md' %>

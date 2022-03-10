@@ -1,3 +1,14 @@
 <p class="text-3xl text-center font-mono font-bold	tracking-wide	">User Answers</p>
 
-<%= user_answers %>
+<div class="grid grid-cols-6 gap-4">
+<% user_answers.sort_by {|k, v| v}.reverse.each do |username, value |%>
+<div class="rounded-lg shadow-lg text-center border border-white p-4">
+<h2 class="text-3xl font-bold">
+<%= value %>
+</h2>
+<h3 class="text-xl font-bold text-gray-400">
+<%= username %>
+</h3>
+</div>
+<% end %>
+</div>

@@ -13,6 +13,7 @@ module Component
         @course = course
         responses
       end
+      
       def responses
         course.lessons.map(&:lobbies).flatten.group_by(&:year).map {|year, lobbies| [year.academic_year, lobbies.map(&:overall_response_rate).sum.fdiv(lobbies.count)] }.to_h
       end
