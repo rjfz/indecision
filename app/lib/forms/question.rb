@@ -7,7 +7,7 @@ module Forms
     attribute :time_limit, :integer
 
     validates :lesson_id, :title, :time_limit, presence: true
-    validates :title, length: { minimum: 6, maximum: 220 }
+    validates :title, length: { minimum: 1, maximum: 220 }
     validates :time_limit, numericality: { only_integer: true }
   end
 end

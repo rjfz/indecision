@@ -16,7 +16,8 @@ class AuthenticatedController < ApplicationController
     create: :create,
     edit: :update,
     update: :update,
-    destroy: :delete
+    destroy: :delete,
+    finish: :update
 }.freeze
 
   layout 'private'

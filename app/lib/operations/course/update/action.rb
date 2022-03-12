@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 module Operations
-  module Lobby
+  module Course
     module Update
       class Action
-        def initialize(lobby, form)
+        def initialize(course, form)
           @form = form
-          @lobby = lobby
+          @course = course
         end
 
         def call
-          lobby.assign_attributes(hold_params)
-          Command.save(lobby)
+          course.assign_attributes(hold_params)
+          Command.save(course)
         end
 
         private
 
-        attr_reader :form, :lobby
+        attr_reader :form, :course
 
         def hold_params
           form.attributes.tap do |attrs|

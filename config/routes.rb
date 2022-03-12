@@ -59,6 +59,10 @@ Rails.application.routes.draw do
   resources :questions
   resources :answers
   resources :responses
-  resources :lobby_questions, only: [:update, :show]
+  resources :lobby_questions, only: [:update, :show] do
+    member do
+      patch :finish
+    end
+  end
   resources :years
 end

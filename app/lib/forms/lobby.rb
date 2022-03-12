@@ -7,6 +7,7 @@ module Forms
     attribute :name, :string
     attribute :state, :string, default: 'pending'
     attribute :year_id, :uuid
+    attribute :image, :upload
 
     validates :lesson_id, :session_date, :name, :year_id, presence: true
 

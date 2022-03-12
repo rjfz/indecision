@@ -5,7 +5,7 @@ class LobbiesController < AuthenticatedController
   include LobbyDependencies['create_lobby', 'update_lobby']
   include AnonUserLobbyDependencies['create_anon_user_lobby']
 
-  before_action :lobby, only: %i[show stats room_information leaderboard individual cohort]
+  before_action :lobby, only: %i[edit show stats room_information leaderboard individual cohort]
   before_action :highscore, only: %i[leaderboard]
 
   def index
@@ -23,6 +23,7 @@ class LobbiesController < AuthenticatedController
 
   def update
     @lobby = update_lobby.call(lobby: lobby, **update_lobby_params)
+    redirect_to @lobby
   end
 
   def leaderboard
@@ -45,11 +46,11 @@ class LobbiesController < AuthenticatedController
   end
 
   def create_lobby_params
-    symbolize params.require(:lobby).permit(:lesson_id, :room_code, :session_date, :name, :state, :year_id)
+    symbolize params.require(:lobby).permit(:lesson_id, :room_code, :session_date, :name, :state, :year_id, :image)
   end
 
   def update_lobby_params
-    symbolize params.require(:lobby).permit(:room_code, :session_date, :name, :state, :year_id)
+    symbolize params.require(:lobby).permit(:room_code, :session_date, :name, :state, :year_id, :image)
   end
 
   def preload_params

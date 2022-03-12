@@ -1,9 +1,11 @@
         <li>
           <div class="space-y-4">
             <%= link_to course do %>
-            <div class="aspect-w-3 aspect-h-2">
-              <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
-            </div>
+             <% if course.image.attached? %>
+                    <%= image_tag(course.image, class: "object-contain max-h-full shadow-lg rounded-lg") %>
+                  <% else %>
+                    <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                  <% end %>
             <% end %>
 
             <div class="space-y-2">
@@ -11,7 +13,7 @@
                 <h3><%= course.name %></h3>
                 <p class="text-indigo-600"><%= course.module_code %></p>
               </div>
-            
+
             </div>
           </div>
         </li>

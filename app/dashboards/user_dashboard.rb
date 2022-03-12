@@ -34,7 +34,7 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    anon_user
+    email
     avatar
     role
   ].freeze
@@ -45,7 +45,6 @@ class UserDashboard < Administrate::BaseDashboard
     anon_user
     avatar
     role
-    user_subjects
     subjects
     id
     email
@@ -69,8 +68,6 @@ class UserDashboard < Administrate::BaseDashboard
     anon_user
     avatar
     role
-    user_subjects
-    subjects
     email
     encrypted_password
     reset_password_token

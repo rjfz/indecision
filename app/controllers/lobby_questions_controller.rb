@@ -9,6 +9,10 @@ class LobbyQuestionsController < AuthenticatedController
     @lobby_question = update_lobby_question.call(lobby_question: lobby_question, **lobby_question_params)
   end
 
+  def finish
+    FinishLobbyQuestionJob.perform_later(lobby_question)
+  end
+
   private
 
   def lobby_question
