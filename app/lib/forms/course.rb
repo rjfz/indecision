@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'activestorage/validator/blob'
+
 module Forms
   class Course < Form
     attribute :subject_id, :uuid
@@ -11,5 +13,6 @@ module Forms
     validates :name, length: { minimum: 1, maximum: 220 }
     validates :module_code, length: { minimum: 4, maximum: 10 }
     validates :name, :module_code, uniqueness: true
+    validates :image, blob: { content_type: :image }
   end
 end

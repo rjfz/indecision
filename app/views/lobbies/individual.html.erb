@@ -29,8 +29,9 @@
       <div class="p-4"><%= response_rate %>%</div>
 
       <% correct_responses = responses.values.reject{ _1.lobby_question.question.question_type == 'Open Answer' }.map(&:correct?).count(true) %>
-      <% percentage_correct = (correct_responses / responses.count.to_f) * 100 %>
-      <div class="p-4"><%= percentage_correct.round(2) %>%</div>
+      <% percentage_correct = (correct_responses / responses.count.to_f) %>
+      <% percentage_correct = 0 if percentage_correct.nan? %>
+      <div class="p-4"><%= (percentage_correct * 100).round(2) %>%</div>
     </div>
   <% end %>
 <% end %>

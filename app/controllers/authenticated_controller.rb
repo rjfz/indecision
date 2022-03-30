@@ -3,6 +3,8 @@
 class AuthenticatedController < ApplicationController
   before_action :authorize
 
+  rescue_from ValidationError, with: :rescue_validation
+
   ACTION_PERMISSION_MAP = {
     index: :view,
     dashboard: :view,
@@ -36,6 +38,22 @@ class AuthenticatedController < ApplicationController
 
 
   private
+
+  def rescue_validation(error)
+    send_notification(text: error.message, style: :error)
+  end
+
+  def send_notification(text:, style:)
+    render turbo_stream: append_notification(text: text, style: style)
+  end
+
+  def append_notification(text:, style:)
+    turbo_stream.append(
+      'notifications',
+      partial: 'application/notification',
+      locals: { text: text, style: style }
+    )
+  end
 
   def can_access?
     resource = self.class.name.gsub('Controller', '').downcase.singularize.to_sym

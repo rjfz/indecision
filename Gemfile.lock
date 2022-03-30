@@ -63,6 +63,8 @@ GEM
       activesupport (= 6.1.4.1)
       marcel (~> 1.0.0)
       mini_mime (>= 1.1.0)
+    activestorage-validator (0.2.0)
+      rails (>= 6.0.4.1)
     activesupport (6.1.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
@@ -397,6 +399,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activestorage-validator
   administrate
   administrate-field-active_storage
   audited (~> 5.0.1)

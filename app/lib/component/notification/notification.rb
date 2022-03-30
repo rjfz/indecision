@@ -5,13 +5,14 @@ module Component
     class Notification < ViewComponent::Base
       include Turbo::FramesHelper
 
-      attr_reader :text, :style
+      attr_reader :text, :style, :timeout
 
-      def initialize(text:, style:)
+      def initialize(text:, style:, timeout: 6000)
         super
 
         @text = text
         @style = style
+        @timeout = timeout
       end
 
       def icon

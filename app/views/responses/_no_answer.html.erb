@@ -1,7 +1,12 @@
 <%= turbo_frame_tag 'response' do %>
-  You've run out of time!
-
   <div class="flex flex-col w-72 mx-auto">
+  <% if response.lobby_question.lobby.state == "finished" %>
+  The winner is: <%= response.lobby_question.lobby.lobby_questions.map(&:responses).flatten.group_by(&:anon_user).map do |anon_user, responses|
+      [anon_user.username, responses.map(&:points).compact.sum]
+    end.to_h.sort_by{|k, v| v}.reverse.first.first.humanize %>
+    <%= link_to 'Home', homepage_path, class: 'text-white mx-auto border border-yellow-300 hover:bg-yellow-400 hover:bg-opacity-20 rounded-md px-6 py-2 m-2' %>
+  <% else %>
+    You've run out of time!
     <div class="pt-8">
       <% if response.lobby_question.question.question_type != 'Open Answer' %>
         <% answers = response.lobby_question.question.answers.where(correct: true).pluck(:value) %>
@@ -15,5 +20,6 @@
       <% end %>
     </div>
     <p class="pt-32 text-gray-400 animate-pulse">Waiting for the next question to start</p>
+    <% end %>
   </div>
 <% end %>
