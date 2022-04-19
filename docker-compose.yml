@@ -70,3 +70,11 @@ services:
       PGADMIN_DEFAULT_PASSWORD: 'nyeisme'
     ports:
       - "8081:80"
+  cypress:
+    image: cypress/included:9.5.4
+    depends_on:
+      - web
+    volumes:
+      - ./spec/cypress:/e2e
+    working_dir: /e2e
+

@@ -1,0 +1,18 @@
+page.body
+exit
+page.body
+subject
+exit
+page.body
+select subject.id, from: 'course_subject_id'
+select subject.name, from: 'course_subject_id'
+exit
+page.body
+exit
+page.body
+click_button 'Create Course'
+page.bosy
+page.body
+exit
+page.body
+continue

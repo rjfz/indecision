@@ -73,3 +73,6 @@ gem 'leaderboard'
 gem 'administrate-field-active_storage'
 gem 'activestorage-validator'
 gem 'capybara'
+gem 'simplecov', :require => false, :group => :test
+
+gem 'database_cleaner-active_record', group: :test
