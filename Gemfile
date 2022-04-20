@@ -57,7 +57,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'cancancan'
 gem 'devise'
 gem 'dry-rails', github: 'dry-rb/dry-rails'
-gem "administrate"
+gem 'administrate'
 
 gem 'heroicon'
 gem 'tailwindcss-rails', '~> 0.3.3'

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
+  root to: 'home#homepage'
+
   namespace :admin do
       resources :users
       resources :answers
@@ -26,7 +29,7 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root to: 'home#homepage', as: :homepage
+  get '/', to: 'home#homepage', as: :homepage
   get '/dashboard', to: 'dashboard#dashboard', as: :dashboard
   get '/about', to: 'about#about', as: :about
 

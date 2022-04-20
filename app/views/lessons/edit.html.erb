@@ -1,5 +1,13 @@
  <%= link_to 'Back To Lessons', @lesson, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 <%= render Component::Lesson::Form.new lesson: @lesson %>
+<div class="max-w-7xl mx-auto my-4 py-4 px-8 border border-gray-500 rounded-xl">
+  <h2 class="text-xl font-bold pb-2">Question types</h2>
+  <ul class="list-disc">
+    <li>A quickfire question must have a time limit set to 0, and at least one answer.</li>
+    <li>A multiple choice question must have a time limit of greater than 0 and at least one answer.</li>
+    <li>An open question must have a time limit of greater than 0 and no answers.</li>
+  </ul>
+</div>
 <div class="max-w-7xl mx-auto grid grid-cols-6 px-8 py-2 font-semibold">
   <div class="col-span-2">Question</div>
   <div>Time Limit</div>
