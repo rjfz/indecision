@@ -17,6 +17,12 @@ In your IDE terminal enter: `git clone https://github.com/rjfz/indecision.git`
 
 Once the repository is cloned onto your machine, in your terminal, go to the root of the cloned folder and run `docker-compose up`. This will bring up the application and it's dependencies.
 
+After this, you can run `rails db:create`, `rails db:migrate`, and `rails db:seed` in that order. They must be ran in the `web` container.
+
+The details are as follows
+  - email: fake3@fakemail.com
+  - password: password
+
 The seed file specifies a default admin account. This admin account can then be used in order to assign roles to other
 users and to assign user subjects to them using the admin panel.
 
@@ -33,7 +39,7 @@ users and to assign user subjects to them using the admin panel.
 - The list of lessons will then be displayed, it has the same layout as the list of modules. You can create a lesson from
   the top of the page. Assuming there is a lesson already, click the desired lesson.
 
-- This shows all the existing lobbies, to create a new lobby. Click the 'Create Lobby' button at the top of the page.
+- This shows all the existing lobbies. To create a new lobby click the 'Create Lobby' button at the top of the page.
   If the button is greyed out, this implies there are invalid or no questions. From here, click 'Edit Lesson' to add or
   alter questions.
 
