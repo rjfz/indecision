@@ -13,9 +13,12 @@ Indecision was made in order to support lecturers in affirming the level of whic
 
 Make sure you have the required dependencies on your machine already.
 
-In your IDE terminal enter: git clone https://github.com/rjfz/indecision.git
+In your IDE terminal enter: `git clone https://github.com/rjfz/indecision.git`
 
-Once the repository is cloned onto your machine, in your terminal go to the root of the cloned folder and run: dup
+Once the repository is cloned onto your machine, in your terminal, go to the root of the cloned folder and run `docker-compose up`. This will bring up the application and it's dependencies.
+
+The seed file specifies a default admin account. This admin account can then be used in order to assign roles to other
+users and to assign user subjects to them using the admin panel.
 
 ## How to create a Lobby
 
