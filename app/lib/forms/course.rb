@@ -13,6 +13,6 @@ module Forms
     validates :name, length: { minimum: 1, maximum: 220 }
     validates :module_code, length: { minimum: 4, maximum: 10 }
     validates :name, :module_code, uniqueness: true
-    validates :image, blob: { content_type: :image }
+    validates :image, blob: { content_type: %r{image/.*} }
   end
 end

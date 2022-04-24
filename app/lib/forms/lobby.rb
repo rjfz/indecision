@@ -10,6 +10,6 @@ module Forms
     attribute :image, :upload
 
     validates :lesson_id, :session_date, :name, :year_id, presence: true
-    validates :image, blob: { content_type: :image }
-  end
+    validates :image, blob: { content_type: %r{image/.*} }
+   end
 end
