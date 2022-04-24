@@ -10,7 +10,7 @@ module Operations
         end
 
         def call
-          lobby.assign_attributes(hold_params)
+          lobby.assign_attributes(hold_params.compact)
           Command.save(lobby)
         end
 

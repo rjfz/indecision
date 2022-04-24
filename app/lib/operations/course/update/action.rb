@@ -10,7 +10,7 @@ module Operations
         end
 
         def call
-          course.assign_attributes(hold_params)
+          course.assign_attributes(hold_params.compact)
           Command.save(course)
         end
 

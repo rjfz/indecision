@@ -10,7 +10,7 @@ module Operations
         end
 
         def call
-          lesson.assign_attributes(form.attributes)
+          lesson.assign_attributes(form.attributes.compact)
           Command.save(lesson)
         end
 
