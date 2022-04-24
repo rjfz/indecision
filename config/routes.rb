@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       resources :lobby_questions
       resources :user_subjects
       resources :subjects
-      resources :anon_user_lobbies
       resources :roles
       resources :anon_users
       resources :years
