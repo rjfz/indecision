@@ -7,7 +7,7 @@
   The winner is: <p class="p-2 font-bold text-green-500 text-lg"><%= response.lobby_question.lobby.lobby_questions.map(&:responses).flatten.group_by(&:anon_user).map do |anon_user, responses|
       [anon_user.username, responses.map(&:points).compact.sum]
     end.to_h.sort_by{|k, v| v}.reverse.first.first.humanize %></p>
-<%= link_to 'Home', homepage_path, data: { turbo: false }, class: 'text-white mx-auto border border-yellow-300 hover:bg-yellow-400 hover:bg-opacity-20 rounded-md px-6 py-2 m-2' %>  <% else %>
+<%= link_to 'Home', homepage_path, data: { turbo: false }, class: 'text-white mx-auto border border-yellow-300 hover:bg-yellow-400 hover:bg-opacity-20 rounded-md px-6 py-2 m-2', target: '_top' %>  <% else %>
   <div class="pt-8">
     <p>Your answer</p>
     <p class="p-2 text-2xl"><%= response.answer_text || response.answer.value %></p>
